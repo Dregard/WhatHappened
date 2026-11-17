@@ -396,7 +396,7 @@ export class McpUnity {
       }
       if (isTransportError) {
         throw new McpUnityError(error.type,
-          `MCP_RESULT_UNKNOWN: ${request.method}; dispatched outcome unknown; transport=${this.connectionState}; inspect editor state before retry. ${error.message}`);
+          `MCP_RESULT_UNKNOWN: ${request.method}; operationId=${requestId}; dispatched outcome unknown; transport=${this.connectionState}; inspect editor state before retry. ${error.message}`);
       }
       throw error;
     }
