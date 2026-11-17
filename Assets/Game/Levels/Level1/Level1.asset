@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0695b1942b72463a9440d3868d69b419, type: 3}
+  m_Name: Level1
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Levels.LevelData
+  SearchData:
+    MainImage: {fileID: 21300000, guid: 855ed19895dec2f4d9c30a943429ac5e, type: 3}
+    OriginalImage: {fileID: 21300000, guid: fd426e3a93da5814186033cbb17d37aa, type: 3}
+    ClueImage: {fileID: 21300000, guid: 883bf642f143e5c41be953adf8edac27, type: 3}
+    ClueName: Golden button
+    IntroText: Grandma Martha's prize cake vanished minutes before the awards!
+    AnomaliesList:
+    - Id: Curtain
+      Image: {fileID: 21300000, guid: 1fe51d5d13754b443ad4aba8761a63ac, type: 3}
+      Bounds:
+        serializedVersion: 2
+        x: 0.08426339
+        y: 0.35791665
+        width: 0.4642857
+        height: 0.50375
+      HudText: The cake was carried out through the back exit.
+    - Id: Sign
+      Image: {fileID: 21300000, guid: 7da0366d847aeaa429e7c1f15f92c71d, type: 3}
+      Bounds:
+        serializedVersion: 2
+        x: 0.4720982
+        y: 0.23666666
+        width: 0.2092634
+        height: 0.095
+      HudText: The thief was in such a hurry they knocked the sign over.
+    - Id: Button
+      Image: {fileID: 21300000, guid: 883bf642f143e5c41be953adf8edac27, type: 3}
+      Bounds:
+        serializedVersion: 2
+        x: 0.19196428
+        y: 0.065
+        width: 0.09709822
+        height: 0.06791667
+      HudText: A fancy button from someone's formal outfit.
+    StagesList:
+    - Count: 3
+      AnomalyIdsList:
+      - Sign
+      - Curtain
+      - Button
+    FindingDuration: 0.4
+    TransitionDuration: 0.3
+    Presentation:
+      PhotoDuration: 0.65
+      FadeDuration: 0.3
+      FlightDuration: 0.6
+      StarsDuration: 0.5
+      MissDuration: 0.4
+      FlickerCount: 2
+      BlackoutDuration: 0.12
+      MarkerColor: {r: 0.3, g: 1, b: 0.5, a: 1}
+      MarkerWidth: 5
+      StarCount: 7
+      StarDistance: 100
+      StarSize: 28
+      StarColor: {r: 1, g: 0.8, b: 0.2, a: 1}
+      MissSize: 45
+      MissColor: {r: 1, g: 0, b: 0, a: 1}
+      ClosedColor: {r: 0.08, g: 0.1, b: 0.16, a: 1}
+      NarrativeDuration: 3
+      FindingSfx: GlassSnap
+      PhotoSfx: ButtonClick
+  LevelTime: 0

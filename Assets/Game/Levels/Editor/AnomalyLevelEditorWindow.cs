@@ -106,6 +106,7 @@ namespace Game.Levels.Editor
             EditorGUILayout.PropertyField(_serializedLevel.FindProperty("LevelTime"));
             var search = _serializedLevel.FindProperty("SearchData");
             EditorGUILayout.PropertyField(search.FindPropertyRelative("MainImage"));
+            EditorGUILayout.PropertyField(search.FindPropertyRelative("OriginalImage"));
             EditorGUILayout.PropertyField(search.FindPropertyRelative("ClueImage"));
             DrawAnomalies(search.FindPropertyRelative("AnomaliesList"));
             EditorGUILayout.Space();

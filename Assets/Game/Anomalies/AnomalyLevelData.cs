@@ -9,6 +9,8 @@ namespace Game.Anomalies
     {
         [Tooltip("Original picture displayed before Ready, and beneath anomaly images during search.")]
         public Sprite MainImage;
+        [Tooltip("Optional original photo shown before Ready, in the photo flight, thumbnail and photo booster. Use it when the original contains objects that vanish for good once the search begins; the board then switches to MainImage. Empty uses MainImage.")]
+        public Sprite OriginalImage;
         [Tooltip("Clue awarded by completing the level; available to chapter presentation.")]
         public Sprite ClueImage;
         [Tooltip("Evidence name shown on the evidence-found screen, for example a strange green test tube. Empty hides the caption.")]
@@ -25,5 +27,8 @@ namespace Game.Anomalies
         public float TransitionDuration = 0.3f;
         [Tooltip("Visual tuning shared by this level's photo, findings, HUD and blackout transitions.")]
         public AnomalyPresentationData Presentation = new();
+
+        /// <summary>Picture representing the original scene: OriginalImage when assigned, otherwise MainImage.</summary>
+        public Sprite PhotoImage => OriginalImage != null ? OriginalImage : MainImage;
     }
 }

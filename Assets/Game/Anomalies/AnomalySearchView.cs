@@ -77,7 +77,7 @@ namespace Game.Anomalies
             var area = AnomalyUi.Image("BoardArea", boardRoot.transform);
             area.color = Color.clear;
             UiKit.Place(area.rectTransform, 45, 460, 1035, 1450);
-            _board = AnomalyUi.Image("Original", area.transform, data.MainImage);
+            _board = AnomalyUi.Image("Original", area.transform, data.PhotoImage);
             _board.raycastTarget = true;
             AnomalyUi.Fit(_board);
             _picture = _board.rectTransform;
@@ -101,7 +101,7 @@ namespace Game.Anomalies
             _veil = AnomalyUi.Image("ShutterAndBlackout", transform);
             _veil.color = Color.clear;
             Boosters = new AnomalyBoosterController(search);
-            gameObject.AddComponent<AnomalyBoosterView>().Initialize(Boosters, search, _picture, data.MainImage);
+            gameObject.AddComponent<AnomalyBoosterView>().Initialize(Boosters, search, _picture, data.PhotoImage);
             _search.Changed += Refresh;
             _search.Found += PresentFinding;
             Refresh();
@@ -117,7 +117,7 @@ namespace Game.Anomalies
             var thumbArea = AnomalyUi.Image("ThumbnailArea", polaroid.transform);
             thumbArea.color = Color.clear;
             AnomalyUi.Bounds(thumbArea.rectTransform, new Vector2(0.105f, 0.224f), new Vector2(0.894f, 0.922f));
-            _thumbnail = AnomalyUi.Image("OriginalThumbnail", thumbArea.transform, data.MainImage);
+            _thumbnail = AnomalyUi.Image("OriginalThumbnail", thumbArea.transform, data.PhotoImage);
             AnomalyUi.Fit(_thumbnail);
             _thumbnail.enabled = false;
             var tape = UiKit.Image("OriginalTape", polaroid.transform, _theme.TapeRed);
@@ -185,7 +185,9 @@ namespace Game.Anomalies
         private IEnumerator Photograph()
         {
             RequestSfx(_data.Presentation.PhotoSfx);
-            var photo = AnomalyUi.Image("PhotoFlight", _effects.transform, _data.MainImage);
+            var photo = AnomalyUi.Image("PhotoFlight", _effects.transform, _data.PhotoImage);
+            // The flying photo covers the board, so the field switches from the original to the search picture unseen.
+            _board.sprite = _data.MainImage;
             Canvas.ForceUpdateCanvases();
             yield return _effects.Animate(_data.Presentation.PhotoDuration, progress =>
             {
