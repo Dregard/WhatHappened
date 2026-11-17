@@ -1,0 +1,11 @@
+# Task clarification
+- Before implementation, inspect the request, relevant code/rules, expected behavior, scope and acceptance criteria. Trace affected call sites and connected scenes, prefabs, configuration, input, animations, VFX, audio and saves as applicable; this impact map need not be a separate file.
+- Treat existing associated presentation, feedback, authored tuning and integrations as behavior to preserve unless the task requires a change. A mechanic refactor/change does not authorize their removal or replacement. Clarify material conflicts or unclear intended changes; do not ask permission merely to preserve established behavior.
+- Ask if materially different interpretations remain: gameplay/edge cases, UI, saves, architecture/domain boundaries, ownership/lifecycle, public APIs or migrations. Existing code cannot establish an unstated product requirement.
+- Game references are incomplete specifications: clarify the behavior to match; never invent exact original parameters.
+- For substantial tasks, briefly state understanding and meaningful assumptions. Bundle unresolved, highest-impact questions into one short message; explain their effects and suggest options when useful. Avoid speculative questionnaires.
+- Discover project facts yourself; resolve routine technical details within established rules.
+- Wait before dependent edits. Silence/time is not agreement. Continue independent inspection/checks without constraining pending decisions.
+- If assumptions/prototyping are explicitly authorized, state assumptions and proceed within scope. Do not reconfirm settled decisions.
+- New material ambiguity: explain it and pause only affected work.
+- Verify agreed behavior and clarified edge cases at completion; follow VALIDATION_RULES for evidence/reporting.

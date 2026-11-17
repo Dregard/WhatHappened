@@ -1,0 +1,43 @@
+Grid: exact edge and side-neighbor classification; corner-only contacts excluded; 180 ordering cases; non-previous neighbor branch observed.
+PASS Assets/Game/Levels/Level0/Level0_PuzzleData.asset
+PASS Assets/Game/Levels/Level1/Level1_PuzzleData.asset
+PASS Assets/Game/Levels/Level2/Level2_PuzzleData.asset
+PASS Assets/Game/Levels/Level3/Level3_PuzzleData.asset
+PASS Assets/Game/Levels/Level4/Level4_PuzzleData.asset
+PASS Assets/Game/Levels/Level5/Level5_PuzzleData.asset
+PASS Assets/Game/Levels/Level6/Level6_PuzzleData.asset
+PASS Assets/Game/Levels/Level7/Level7_PuzzleData.asset
+PASS Assets/Game/Levels/Level8/Level8_PuzzleData.asset
+PASS Assets/Game/Levels/Level9/Level9_PuzzleData.asset
+PASS Assets/Game/Levels/Level10/Level10_PuzzleData.asset
+PASS Assets/Game/Levels/Level11/Level11_PuzzleData.asset
+PASS Assets/Game/Levels/Level12/Level12_PuzzleData.asset
+PASS Assets/Game/Levels/Level13/Level13_PuzzleData.asset
+PASS Assets/Game/Levels/Level14/Level14_PuzzleData.asset
+PASS Assets/Game/Levels/Level15/Level15_PuzzleData.asset
+PASS Assets/Game/Levels/Level16/Level16_PuzzleData.asset
+PASS Assets/Game/Levels/Level17/Level17_PuzzleData.asset
+PASS Assets/Game/Levels/Level18/Level18_PuzzleData.asset
+PASS Assets/Game/Levels/Level19/Level19_PuzzleData.asset
+PASS Assets/Game/Levels/Level20/Level20_PuzzleData.asset
+PASS Assets/Game/Levels/Level21/Level21_PuzzleData.asset
+PASS Assets/Game/Levels/Level22/Level22_PuzzleData.asset
+PASS Assets/Game/Levels/Level23/Level23_PuzzleData.asset
+PASS Assets/Game/Levels/Level24/Level24_PuzzleData.asset
+PASS Assets/Game/Levels/Level25/Level25_PuzzleData.asset
+PASS Assets/Game/Levels/Level26/Level26_PuzzleData.asset
+PASS Assets/Game/Levels/Level27/Level27_PuzzleData.asset
+PASS Assets/Game/Levels/Level28/Level28_PuzzleData.asset
+PASS Assets/Game/Levels/Level29/Level29_PuzzleData.asset
+PASS Assets/Game/Levels/Level30/Level30_PuzzleData.asset
+PASS Assets/Game/Levels/Level31/Level31_PuzzleData.asset
+PASS Assets/Game/Levels/Level32/Level32_PuzzleData.asset
+PASS Assets/Game/Levels/Level33/Level33_PuzzleData.asset
+PASS Assets/Game/Levels/Level34/Level34_PuzzleData.asset
+PASS Assets/Game/Levels/Level35/Level35_PuzzleData.asset
+PASS Assets/Game/Levels/Level36/Level36_PuzzleData.asset
+PASS Assets/Game/Levels/Level37/Level37_PuzzleData.asset
+PASS Assets/Game/Levels/Level38/Level38_PuzzleData.asset
+PASS Assets/Game/Levels/Level39/Level39_PuzzleData.asset
+PASS existing level/config deserialization, 40 levels.
+PASS total ordering cases: 660

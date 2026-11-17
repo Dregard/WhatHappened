@@ -1,0 +1,11 @@
+# Mechanic configuration
+- Expose every tunable mechanic value through serialized fields or ScriptableObjects using project patterns: speed, acceleration, damping, distances/limits, timing/cooldowns, chance/thresholds, effects/colors and input where relevant.
+- No tuning hidden in methods, constants or non-configurable properties. Useful defaults are allowed; runtime uses authored settings without resetting them during normal initialization.
+- Mathematical constants, conversions, indices and algorithmic invariants may stay in code; do not expose every literal.
+- Local scene/prefab settings: private serialized component fields. Shared settings/presets: ScriptableObjects. Reuse containers; no asset per parameter.
+- One source of truth; duplicate component/asset values require explicit override policy. Separate runtime state; do not mutate shared config assets as gameplay state.
+- Reuse existing Input System actions/bindings, not duplicate hardcoded keys.
+- Every added/changed serialized setting, including ScriptableObject/serializable-class fields, needs `[Tooltip]`: purpose, effect of changing it, applicable units, special values/ranges, directions and setting dependencies.
+- Explain rather than repeat names; describe actual behavior (smoothing time is not speed). Comments/headers do not replace individual tooltips. Use project tooltip language, otherwise English.
+- Use suitable Min/Range constraints plus necessary runtime validation for external sources. Handle invalid combinations explicitly; no silent discarding of authored values without policy.
+- Migrations follow UNITY_ASSET_RULES. Check exposure, defaults, tooltip accuracy and actual consumption before completion.

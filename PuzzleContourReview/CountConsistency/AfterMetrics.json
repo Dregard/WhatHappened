@@ -1,0 +1,757 @@
+{
+  "Count_128_26_True": {
+    "pieces": [
+      {
+        "turns": 49,
+        "deep": 42,
+        "sides": 56
+      },
+      {
+        "turns": 25,
+        "deep": 19,
+        "sides": 28
+      },
+      {
+        "turns": 25,
+        "deep": 22,
+        "sides": 28
+      },
+      {
+        "turns": 30,
+        "deep": 28,
+        "sides": 35
+      },
+      {
+        "turns": 47,
+        "deep": 40,
+        "sides": 51
+      },
+      {
+        "turns": 37,
+        "deep": 31,
+        "sides": 43
+      },
+      {
+        "turns": 23,
+        "deep": 19,
+        "sides": 28
+      },
+      {
+        "turns": 25,
+        "deep": 20,
+        "sides": 32
+      },
+      {
+        "turns": 32,
+        "deep": 25,
+        "sides": 39
+      },
+      {
+        "turns": 53,
+        "deep": 46,
+        "sides": 57
+      },
+      {
+        "turns": 46,
+        "deep": 44,
+        "sides": 52
+      },
+      {
+        "turns": 44,
+        "deep": 37,
+        "sides": 50
+      },
+      {
+        "turns": 30,
+        "deep": 22,
+        "sides": 37
+      },
+      {
+        "turns": 57,
+        "deep": 51,
+        "sides": 64
+      },
+      {
+        "turns": 44,
+        "deep": 37,
+        "sides": 51
+      },
+      {
+        "turns": 53,
+        "deep": 45,
+        "sides": 59
+      },
+      {
+        "turns": 43,
+        "deep": 33,
+        "sides": 46
+      },
+      {
+        "turns": 34,
+        "deep": 29,
+        "sides": 38
+      },
+      {
+        "turns": 25,
+        "deep": 20,
+        "sides": 32
+      },
+      {
+        "turns": 48,
+        "deep": 39,
+        "sides": 55
+      },
+      {
+        "turns": 58,
+        "deep": 50,
+        "sides": 64
+      },
+      {
+        "turns": 25,
+        "deep": 19,
+        "sides": 36
+      },
+      {
+        "turns": 44,
+        "deep": 32,
+        "sides": 50
+      },
+      {
+        "turns": 40,
+        "deep": 33,
+        "sides": 46
+      },
+      {
+        "turns": 31,
+        "deep": 27,
+        "sides": 34
+      },
+      {
+        "turns": 43,
+        "deep": 34,
+        "sides": 49
+      }
+    ],
+    "turns": 1011,
+    "deep": 844,
+    "minDeep": 19,
+    "maxSides": 64
+  },
+  "Count_512_13_False": {
+    "pieces": [
+      {
+        "turns": 31,
+        "deep": 15,
+        "sides": 34
+      },
+      {
+        "turns": 31,
+        "deep": 19,
+        "sides": 36
+      },
+      {
+        "turns": 49,
+        "deep": 27,
+        "sides": 52
+      },
+      {
+        "turns": 31,
+        "deep": 22,
+        "sides": 34
+      },
+      {
+        "turns": 75,
+        "deep": 35,
+        "sides": 79
+      },
+      {
+        "turns": 79,
+        "deep": 30,
+        "sides": 83
+      },
+      {
+        "turns": 53,
+        "deep": 22,
+        "sides": 57
+      },
+      {
+        "turns": 56,
+        "deep": 32,
+        "sides": 59
+      },
+      {
+        "turns": 58,
+        "deep": 32,
+        "sides": 61
+      },
+      {
+        "turns": 88,
+        "deep": 39,
+        "sides": 92
+      },
+      {
+        "turns": 91,
+        "deep": 43,
+        "sides": 96
+      },
+      {
+        "turns": 73,
+        "deep": 35,
+        "sides": 78
+      },
+      {
+        "turns": 97,
+        "deep": 41,
+        "sides": 105
+      }
+    ],
+    "turns": 812,
+    "deep": 392,
+    "minDeep": 15,
+    "maxSides": 105
+  },
+  "Count_512_26_False": {
+    "pieces": [
+      {
+        "turns": 62,
+        "deep": 40,
+        "sides": 66
+      },
+      {
+        "turns": 32,
+        "deep": 16,
+        "sides": 34
+      },
+      {
+        "turns": 42,
+        "deep": 19,
+        "sides": 47
+      },
+      {
+        "turns": 36,
+        "deep": 20,
+        "sides": 44
+      },
+      {
+        "turns": 84,
+        "deep": 36,
+        "sides": 86
+      },
+      {
+        "turns": 66,
+        "deep": 29,
+        "sides": 70
+      },
+      {
+        "turns": 42,
+        "deep": 29,
+        "sides": 48
+      },
+      {
+        "turns": 82,
+        "deep": 42,
+        "sides": 84
+      },
+      {
+        "turns": 54,
+        "deep": 24,
+        "sides": 59
+      },
+      {
+        "turns": 77,
+        "deep": 40,
+        "sides": 83
+      },
+      {
+        "turns": 83,
+        "deep": 48,
+        "sides": 87
+      },
+      {
+        "turns": 87,
+        "deep": 41,
+        "sides": 96
+      },
+      {
+        "turns": 52,
+        "deep": 22,
+        "sides": 58
+      },
+      {
+        "turns": 77,
+        "deep": 39,
+        "sides": 83
+      },
+      {
+        "turns": 80,
+        "deep": 45,
+        "sides": 86
+      },
+      {
+        "turns": 53,
+        "deep": 29,
+        "sides": 57
+      },
+      {
+        "turns": 93,
+        "deep": 56,
+        "sides": 99
+      },
+      {
+        "turns": 68,
+        "deep": 29,
+        "sides": 74
+      },
+      {
+        "turns": 48,
+        "deep": 37,
+        "sides": 51
+      },
+      {
+        "turns": 41,
+        "deep": 25,
+        "sides": 42
+      },
+      {
+        "turns": 57,
+        "deep": 14,
+        "sides": 63
+      },
+      {
+        "turns": 74,
+        "deep": 37,
+        "sides": 77
+      },
+      {
+        "turns": 90,
+        "deep": 42,
+        "sides": 92
+      },
+      {
+        "turns": 63,
+        "deep": 34,
+        "sides": 66
+      },
+      {
+        "turns": 86,
+        "deep": 39,
+        "sides": 93
+      },
+      {
+        "turns": 59,
+        "deep": 26,
+        "sides": 65
+      }
+    ],
+    "turns": 1688,
+    "deep": 858,
+    "minDeep": 14,
+    "maxSides": 99
+  },
+  "Count_512_26_False_Seed17": {
+    "pieces": [
+      {
+        "turns": 102,
+        "deep": 46,
+        "sides": 105
+      },
+      {
+        "turns": 37,
+        "deep": 26,
+        "sides": 41
+      },
+      {
+        "turns": 42,
+        "deep": 18,
+        "sides": 45
+      },
+      {
+        "turns": 35,
+        "deep": 15,
+        "sides": 40
+      },
+      {
+        "turns": 79,
+        "deep": 43,
+        "sides": 85
+      },
+      {
+        "turns": 24,
+        "deep": 16,
+        "sides": 27
+      },
+      {
+        "turns": 67,
+        "deep": 37,
+        "sides": 75
+      },
+      {
+        "turns": 37,
+        "deep": 25,
+        "sides": 43
+      },
+      {
+        "turns": 56,
+        "deep": 28,
+        "sides": 63
+      },
+      {
+        "turns": 67,
+        "deep": 36,
+        "sides": 75
+      },
+      {
+        "turns": 107,
+        "deep": 51,
+        "sides": 114
+      },
+      {
+        "turns": 80,
+        "deep": 48,
+        "sides": 85
+      },
+      {
+        "turns": 98,
+        "deep": 42,
+        "sides": 102
+      },
+      {
+        "turns": 63,
+        "deep": 32,
+        "sides": 69
+      },
+      {
+        "turns": 69,
+        "deep": 33,
+        "sides": 77
+      },
+      {
+        "turns": 59,
+        "deep": 24,
+        "sides": 62
+      },
+      {
+        "turns": 54,
+        "deep": 35,
+        "sides": 61
+      },
+      {
+        "turns": 58,
+        "deep": 34,
+        "sides": 66
+      },
+      {
+        "turns": 42,
+        "deep": 30,
+        "sides": 48
+      },
+      {
+        "turns": 52,
+        "deep": 15,
+        "sides": 61
+      },
+      {
+        "turns": 76,
+        "deep": 44,
+        "sides": 84
+      },
+      {
+        "turns": 94,
+        "deep": 46,
+        "sides": 100
+      },
+      {
+        "turns": 68,
+        "deep": 25,
+        "sides": 75
+      },
+      {
+        "turns": 33,
+        "deep": 22,
+        "sides": 39
+      },
+      {
+        "turns": 82,
+        "deep": 48,
+        "sides": 87
+      },
+      {
+        "turns": 63,
+        "deep": 30,
+        "sides": 69
+      }
+    ],
+    "turns": 1644,
+    "deep": 849,
+    "minDeep": 15,
+    "maxSides": 114
+  },
+  "Count_512_52_False": {
+    "pieces": [
+      {
+        "turns": 44,
+        "deep": 27,
+        "sides": 48
+      },
+      {
+        "turns": 33,
+        "deep": 19,
+        "sides": 37
+      },
+      {
+        "turns": 33,
+        "deep": 20,
+        "sides": 39
+      },
+      {
+        "turns": 49,
+        "deep": 26,
+        "sides": 53
+      },
+      {
+        "turns": 50,
+        "deep": 28,
+        "sides": 56
+      },
+      {
+        "turns": 48,
+        "deep": 22,
+        "sides": 56
+      },
+      {
+        "turns": 65,
+        "deep": 31,
+        "sides": 66
+      },
+      {
+        "turns": 46,
+        "deep": 26,
+        "sides": 52
+      },
+      {
+        "turns": 89,
+        "deep": 38,
+        "sides": 97
+      },
+      {
+        "turns": 88,
+        "deep": 55,
+        "sides": 93
+      },
+      {
+        "turns": 80,
+        "deep": 56,
+        "sides": 85
+      },
+      {
+        "turns": 110,
+        "deep": 55,
+        "sides": 118
+      },
+      {
+        "turns": 83,
+        "deep": 42,
+        "sides": 94
+      },
+      {
+        "turns": 53,
+        "deep": 30,
+        "sides": 61
+      },
+      {
+        "turns": 76,
+        "deep": 39,
+        "sides": 85
+      },
+      {
+        "turns": 57,
+        "deep": 23,
+        "sides": 59
+      },
+      {
+        "turns": 86,
+        "deep": 46,
+        "sides": 95
+      },
+      {
+        "turns": 55,
+        "deep": 37,
+        "sides": 60
+      },
+      {
+        "turns": 74,
+        "deep": 37,
+        "sides": 83
+      },
+      {
+        "turns": 68,
+        "deep": 38,
+        "sides": 72
+      },
+      {
+        "turns": 83,
+        "deep": 45,
+        "sides": 88
+      },
+      {
+        "turns": 67,
+        "deep": 39,
+        "sides": 74
+      },
+      {
+        "turns": 90,
+        "deep": 37,
+        "sides": 97
+      },
+      {
+        "turns": 90,
+        "deep": 63,
+        "sides": 91
+      },
+      {
+        "turns": 30,
+        "deep": 14,
+        "sides": 34
+      },
+      {
+        "turns": 53,
+        "deep": 24,
+        "sides": 55
+      },
+      {
+        "turns": 86,
+        "deep": 42,
+        "sides": 90
+      },
+      {
+        "turns": 69,
+        "deep": 47,
+        "sides": 78
+      },
+      {
+        "turns": 47,
+        "deep": 26,
+        "sides": 54
+      },
+      {
+        "turns": 61,
+        "deep": 40,
+        "sides": 65
+      },
+      {
+        "turns": 98,
+        "deep": 46,
+        "sides": 107
+      },
+      {
+        "turns": 76,
+        "deep": 49,
+        "sides": 81
+      },
+      {
+        "turns": 84,
+        "deep": 33,
+        "sides": 91
+      },
+      {
+        "turns": 80,
+        "deep": 46,
+        "sides": 87
+      },
+      {
+        "turns": 62,
+        "deep": 36,
+        "sides": 70
+      },
+      {
+        "turns": 81,
+        "deep": 49,
+        "sides": 84
+      },
+      {
+        "turns": 71,
+        "deep": 39,
+        "sides": 75
+      },
+      {
+        "turns": 76,
+        "deep": 39,
+        "sides": 84
+      },
+      {
+        "turns": 78,
+        "deep": 42,
+        "sides": 85
+      },
+      {
+        "turns": 76,
+        "deep": 51,
+        "sides": 87
+      },
+      {
+        "turns": 57,
+        "deep": 32,
+        "sides": 66
+      },
+      {
+        "turns": 50,
+        "deep": 21,
+        "sides": 57
+      },
+      {
+        "turns": 75,
+        "deep": 39,
+        "sides": 83
+      },
+      {
+        "turns": 57,
+        "deep": 25,
+        "sides": 61
+      },
+      {
+        "turns": 41,
+        "deep": 25,
+        "sides": 45
+      },
+      {
+        "turns": 68,
+        "deep": 37,
+        "sides": 77
+      },
+      {
+        "turns": 90,
+        "deep": 40,
+        "sides": 95
+      },
+      {
+        "turns": 65,
+        "deep": 42,
+        "sides": 68
+      },
+      {
+        "turns": 67,
+        "deep": 37,
+        "sides": 71
+      },
+      {
+        "turns": 78,
+        "deep": 30,
+        "sides": 80
+      },
+      {
+        "turns": 90,
+        "deep": 41,
+        "sides": 100
+      },
+      {
+        "turns": 58,
+        "deep": 20,
+        "sides": 65
+      }
+    ],
+    "turns": 3541,
+    "deep": 1891,
+    "minDeep": 14,
+    "maxSides": 118
+  }
+}

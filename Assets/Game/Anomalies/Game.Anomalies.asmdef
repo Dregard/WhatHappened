@@ -1,0 +1,4 @@
+{
+    "name": "Game.Anomalies",
+    "references": ["Unity.ugui", "Unity.TextMeshPro"]
+}

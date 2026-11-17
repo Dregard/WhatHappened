@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0695b1942b72463a9440d3868d69b419, type: 3}
+  m_Name: Level0
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Levels.LevelData
+  SearchData:
+    MainImage: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+    ClueImage: {fileID: 21300008, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+    AnomaliesList:
+    - Id: Anomaly1
+      Image: {fileID: 21300004, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+      Bounds:
+        serializedVersion: 2
+        x: 0.07
+        y: 0.114067286
+        width: 0.2
+        height: 0.2
+      HudText: haha
+    - Id: Anomaly2
+      Image: {fileID: 21300014, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+      Bounds:
+        serializedVersion: 2
+        x: 0.2273045
+        y: 0.68743116
+        width: 0.2
+        height: 0.2
+      HudText: hehe
+    - Id: Anomaly3
+      Image: {fileID: 21300006, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+      Bounds:
+        serializedVersion: 2
+        x: 0.61
+        y: 0.5651376
+        width: 0.29
+        height: 0.2
+      HudText: Hoho
+    StagesList:
+    - Count: 3
+      AnomalyIdsList:
+      - Anomaly1
+      - Anomaly2
+      - Anomaly3
+    FindingDuration: 0.4
+    TransitionDuration: 0.3
+    Presentation:
+      PhotoDuration: 0.65
+      FadeDuration: 0.3
+      FlightDuration: 0.6
+      StarsDuration: 0.5
+      MissDuration: 0.4
+      FlickerCount: 2
+      BlackoutDuration: 0.12
+      MarkerColor: {r: 0.3, g: 1, b: 0.5, a: 1}
+      MarkerWidth: 5
+      StarCount: 7
+      StarDistance: 100
+      StarSize: 28
+      StarColor: {r: 1, g: 0.8, b: 0.2, a: 1}
+      MissSize: 45
+      MissColor: {r: 1, g: 0, b: 0, a: 1}
+      ClosedColor: {r: 0.08, g: 0.1, b: 0.16, a: 1}
+      ThumbnailBounds:
+        serializedVersion: 2
+        x: 0.76
+        y: 0.8
+        width: 0.24
+        height: 0.2
+      FindingSfx: GlassSnap
+      PhotoSfx: ButtonClick
+  LevelTime: 0

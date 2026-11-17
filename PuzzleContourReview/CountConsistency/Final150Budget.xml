@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 19:13:13Z" end-time="2026-11-05 19:14:27Z" duration="73,8541339">
+  <test-suite type="TestSuite" id="1000" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="202" result="Passed" start-time="2026-11-05 19:13:13Z" end-time="2026-11-05 19:14:27Z" duration="73.854134" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1169" name="Game.Puzzles.Editor.Tests.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/Game.Puzzles.Editor.Tests.dll" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:13:13Z" end-time="2026-11-05 19:14:27Z" duration="73.734971" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1170" name="Game" fullname="Game" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:13:13Z" end-time="2026-11-05 19:14:27Z" duration="73.652311" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1171" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:13:14Z" end-time="2026-11-05 19:14:27Z" duration="73.545476" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1172" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:13:14Z" end-time="2026-11-05 19:14:27Z" duration="73.437933" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1091" name="PuzzleSlicerContourExpressionTests" fullname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests" classname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-05 19:13:14Z" end-time="2026-11-05 19:14:27Z" duration="73.327157" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1095" name="MaximumBudgetAddsExpressedFacets" fullname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests.MaximumBudgetAddsExpressedFacets" classname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-05 19:13:14Z" end-time="2026-11-05 19:14:27Z" duration="73.214114" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1092" name="MaximumBudgetAddsExpressedFacets(11,672,238)" fullname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests.MaximumBudgetAddsExpressedFacets(11,672,238)" methodname="MaximumBudgetAddsExpressedFacets" classname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests" runstate="Runnable" seed="1921860995" result="Passed" start-time="2026-11-05 19:13:14Z" end-time="2026-11-05 19:13:19Z" duration="5.471643" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Seed 11: 672 -> 1013 expressed turns; 238 -> 528 visible-depth turns.
+]]></output>
+                </test-case>
+                <test-case id="1093" name="MaximumBudgetAddsExpressedFacets(17,679,249)" fullname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests.MaximumBudgetAddsExpressedFacets(17,679,249)" methodname="MaximumBudgetAddsExpressedFacets" classname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests" runstate="Runnable" seed="1185104538" result="Passed" start-time="2026-11-05 19:13:20Z" end-time="2026-11-05 19:13:42Z" duration="22.929703" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Seed 17: 679 -> 1000 expressed turns; 249 -> 501 visible-depth turns.
+]]></output>
+                </test-case>
+                <test-case id="1094" name="MaximumBudgetAddsExpressedFacets(31,740,263)" fullname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests.MaximumBudgetAddsExpressedFacets(31,740,263)" methodname="MaximumBudgetAddsExpressedFacets" classname="Game.Puzzles.Tests.PuzzleSlicerContourExpressionTests" runstate="Runnable" seed="1992838801" result="Passed" start-time="2026-11-05 19:13:42Z" end-time="2026-11-05 19:14:27Z" duration="44.691053" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Seed 31: 740 -> 1019 expressed turns; 263 -> 527 visible-depth turns.
+Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

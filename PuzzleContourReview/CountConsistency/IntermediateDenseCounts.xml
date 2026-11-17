@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 19:02:59Z" end-time="2026-11-05 19:07:56Z" duration="296,4256216">
+  <test-suite type="TestSuite" id="1277" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="202" result="Failed" site="Child" start-time="2026-11-05 19:02:59Z" end-time="2026-11-05 19:07:56Z" duration="296.425622" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1037" name="CountExpressionVerification.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/CountExpressionVerification.dll" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-05 19:03:00Z" end-time="2026-11-05 19:07:56Z" duration="296.301090" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1038" name="Game" fullname="Game" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-05 19:03:00Z" end-time="2026-11-05 19:07:56Z" duration="296.222798" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1039" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-05 19:03:00Z" end-time="2026-11-05 19:07:56Z" duration="296.114763" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1040" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-05 19:03:00Z" end-time="2026-11-05 19:07:56Z" duration="296.006316" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1026" name="CountExpressionVerification" fullname="Game.Puzzles.Tests.CountExpressionVerification" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-05 19:03:00Z" end-time="2026-11-05 19:07:56Z" duration="295.889862" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-suite type="ParameterizedMethod" id="1032" name="Export" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-05 19:03:00Z" end-time="2026-11-05 19:07:56Z" duration="295.729018" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1027" name="Export(512,13,False,11)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,13,False,11)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1735040807" result="Passed" start-time="2026-11-05 19:03:00Z" end-time="2026-11-05 19:03:43Z" duration="42.630726" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Count 13, seed 11, piece 0: 40 real turns, 8 visible-depth turns, 48 internal facets.
+Count 13, seed 11, piece 1: 36 real turns, 10 visible-depth turns, 41 internal facets.
+Count 13, seed 11, piece 2: 43 real turns, 14 visible-depth turns, 46 internal facets.
+Count 13, seed 11, piece 3: 56 real turns, 19 visible-depth turns, 63 internal facets.
+Count 13, seed 11, piece 4: 84 real turns, 20 visible-depth turns, 104 internal facets.
+Count 13, seed 11, piece 5: 57 real turns, 13 visible-depth turns, 64 internal facets.
+Count 13, seed 11, piece 6: 69 real turns, 20 visible-depth turns, 81 internal facets.
+Count 13, seed 11, piece 7: 74 real turns, 25 visible-depth turns, 89 internal facets.
+Count 13, seed 11, piece 8: 59 real turns, 17 visible-depth turns, 65 internal facets.
+Count 13, seed 11, piece 9: 76 real turns, 20 visible-depth turns, 84 internal facets.
+Count 13, seed 11, piece 10: 79 real turns, 24 visible-depth turns, 89 internal facets.
+Count 13, seed 11, piece 11: 59 real turns, 14 visible-depth turns, 66 internal facets.
+Count 13, seed 11, piece 12: 45 real turns, 18 visible-depth turns, 54 internal facets.
+]]></output>
+                </test-case>
+                <test-case id="1028" name="Export(512,26,False,11)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,26,False,11)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="395254924" result="Passed" start-time="2026-11-05 19:03:43Z" end-time="2026-11-05 19:03:54Z" duration="11.262067" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Count 26, seed 11, piece 0: 83 real turns, 25 visible-depth turns, 92 internal facets.
+Count 26, seed 11, piece 1: 31 real turns, 7 visible-depth turns, 37 internal facets.
+Count 26, seed 11, piece 2: 44 real turns, 14 visible-depth turns, 51 internal facets.
+Count 26, seed 11, piece 3: 44 real turns, 12 visible-depth turns, 57 internal facets.
+Count 26, seed 11, piece 4: 77 real turns, 29 visible-depth turns, 88 internal facets.
+Count 26, seed 11, piece 5: 64 real turns, 25 visible-depth turns, 71 internal facets.
+Count 26, seed 11, piece 6: 28 real turns, 13 visible-depth turns, 32 internal facets.
+Count 26, seed 11, piece 7: 41 real turns, 12 visible-depth turns, 48 internal facets.
+Count 26, seed 11, piece 8: 91 real turns, 26 visible-depth turns, 104 internal facets.
+Count 26, seed 11, piece 9: 70 real turns, 23 visible-depth turns, 83 internal facets.
+Count 26, seed 11, piece 10: 55 real turns, 14 visible-depth turns, 66 internal facets.
+Count 26, seed 11, piece 11: 40 real turns, 18 visible-depth turns, 51 internal facets.
+Count 26, seed 11, piece 12: 109 real turns, 33 visible-depth turns, 122 internal facets.
+Count 26, seed 11, piece 13: 91 real turns, 40 visible-depth turns, 102 internal facets.
+Count 26, seed 11, piece 14: 83 real turns, 33 visible-depth turns, 91 internal facets.
+Count 26, seed 11, piece 15: 31 real turns, 9 visible-depth turns, 35 internal facets.
+Count 26, seed 11, piece 16: 76 real turns, 27 visible-depth turns, 84 internal facets.
+Count 26, seed 11, piece 17: 79 real turns, 24 visible-depth turns, 88 internal facets.
+Count 26, seed 11, piece 18: 78 real turns, 17 visible-depth turns, 91 internal facets.
+Count 26, seed 11, piece 19: 38 real turns, 11 visible-depth turns, 48 internal facets.
+Count 26, seed 11, piece 20: 72 real turns, 20 visible-depth turns, 84 internal facets.
+Count 26, seed 11, piece 21: 51 real turns, 14 visible-depth turns, 68 internal facets.
+Count 26, seed 11, piece 22: 47 real turns, 14 visible-depth turns, 50 internal facets.
+Count 26, seed 11, piece 23: 72 real turns, 26 visible-depth turns, 81 internal facets.
+Count 26, seed 11, piece 24: 80 real turns, 22 visible-depth turns, 96 internal facets.
+Count 26, seed 11, piece 25: 68 real turns, 16 visible-depth turns, 84 internal facets.
+]]></output>
+                </test-case>
+                <test-case id="1029" name="Export(512,26,False,17)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,26,False,17)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="2115037390" result="Passed" start-time="2026-11-05 19:03:54Z" end-time="2026-11-05 19:04:01Z" duration="6.650210" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Count 26, seed 17, piece 0: 99 real turns, 26 visible-depth turns, 109 internal facets.
+Count 26, seed 17, piece 1: 48 real turns, 16 visible-depth turns, 54 internal facets.
+Count 26, seed 17, piece 2: 29 real turns, 13 visible-depth turns, 34 internal facets.
+Count 26, seed 17, piece 3: 37 real turns, 16 visible-depth turns, 42 internal facets.
+Count 26, seed 17, piece 4: 89 real turns, 22 visible-depth turns, 94 internal facets.
+Count 26, seed 17, piece 5: 30 real turns, 15 visible-depth turns, 35 internal facets.
+Count 26, seed 17, piece 6: 89 real turns, 23 visible-depth turns, 109 internal facets.
+Count 26, seed 17, piece 7: 53 real turns, 23 visible-depth turns, 58 internal facets.
+Count 26, seed 17, piece 8: 45 real turns, 18 visible-depth turns, 59 internal facets.
+Count 26, seed 17, piece 9: 59 real turns, 13 visible-depth turns, 72 internal facets.
+Count 26, seed 17, piece 10: 74 real turns, 33 visible-depth turns, 83 internal facets.
+Count 26, seed 17, piece 11: 89 real turns, 31 visible-depth turns, 100 internal facets.
+Count 26, seed 17, piece 12: 89 real turns, 25 visible-depth turns, 99 internal facets.
+Count 26, seed 17, piece 13: 78 real turns, 25 visible-depth turns, 87 internal facets.
+Count 26, seed 17, piece 14: 84 real turns, 28 visible-depth turns, 92 internal facets.
+Count 26, seed 17, piece 15: 51 real turns, 15 visible-depth turns, 57 internal facets.
+Count 26, seed 17, piece 16: 54 real turns, 30 visible-depth turns, 63 internal facets.
+Count 26, seed 17, piece 17: 37 real turns, 16 visible-depth turns, 41 internal facets.
+Count 26, seed 17, piece 18: 68 real turns, 21 visible-depth turns, 79 internal facets.
+Count 26, seed 17, piece 19: 38 real turns, 14 visible-depth turns, 46 internal facets.
+Count 26, seed 17, piece 20: 95 real turns, 25 visible-depth turns, 105 internal facets.
+Count 26, seed 17, piece 21: 71 real turns, 24 visible-depth turns, 84 internal facets.
+Count 26, seed 17, piece 22: 60 real turns, 16 visible-depth turns, 79 internal facets.
+Count 26, seed 17, piece 23: 51 real turns, 21 visible-depth turns, 59 internal facets.
+Count 26, seed 17, piece 24: 73 real turns, 24 visible-depth turns, 90 internal facets.
+Count 26, seed 17, piece 25: 42 real turns, 13 visible-depth turns, 50 internal facets.
+]]></output>
+                </test-case>
+                <test-case id="1030" name="Export(512,52,False,11)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,52,False,11)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1361282906" result="Failed" start-time="2026-11-05 19:04:01Z" end-time="2026-11-05 19:07:33Z" duration="212.792915" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Piece 3 retained only shallow waves.
+  Expected: greater than or equal to 6
+  But was:  5
+]]></message>
+                    <stack-trace><![CDATA[at Game.Puzzles.Tests.PuzzleSlicerPieceCountExpressionTests.AssertExpressedContours (System.Object model, UnityEngine.Texture2D source, System.Int32 count, System.Int32 seed) [0x0029a] in C:\Users\karda\OneDrive\Desktop\GitHub\Glass_Master\Assets\Game\Puzzles\Tests\Editor\PuzzleSlicerPieceCountExpressionTests.cs:55
+at Game.Puzzles.Tests.CountExpressionVerification.Export (System.Int32 size, System.Int32 count, System.Boolean alpha, System.Int32 seed) [0x00038] in C:\Users\karda\OneDrive\Desktop\GitHub\Glass_Master\Assets\__OrchestratorTemp-d31b145826ca4a1d8c847ec8e6fd3c09\CountExpressionVerification.cs:23
+]]></stack-trace>
+                  </failure>
+                  <output><![CDATA[Count 52, seed 11, piece 0: 74 real turns, 23 visible-depth turns, 83 internal facets.
+Count 52, seed 11, piece 1: 31 real turns, 13 visible-depth turns, 40 internal facets.
+Count 52, seed 11, piece 2: 22 real turns, 9 visible-depth turns, 26 internal facets.
+Count 52, seed 11, piece 3: 32 real turns, 5 visible-depth turns, 40 internal facets.
+]]></output>
+                </test-case>
+                <test-case id="1031" name="Export(128,26,True,11)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(128,26,True,11)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1287283835" result="Passed" start-time="2026-11-05 19:07:34Z" end-time="2026-11-05 19:07:56Z" duration="22.079992" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

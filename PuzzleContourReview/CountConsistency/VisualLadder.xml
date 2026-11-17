@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 19:35:42Z" end-time="2026-11-05 19:35:57Z" duration="14,8731578">
+  <test-suite type="TestSuite" id="1286" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="205" result="Passed" start-time="2026-11-05 19:35:42Z" end-time="2026-11-05 19:35:57Z" duration="14.873158" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1041" name="CurrentContourVerification.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/CurrentContourVerification.dll" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:35:42Z" end-time="2026-11-05 19:35:57Z" duration="14.770032" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1042" name="Game" fullname="Game" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:35:43Z" end-time="2026-11-05 19:35:57Z" duration="14.659862" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1043" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:35:43Z" end-time="2026-11-05 19:35:57Z" duration="14.552659" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1044" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:35:43Z" end-time="2026-11-05 19:35:57Z" duration="14.443396" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1033" name="CurrentContourVerification" fullname="Game.Puzzles.Tests.CurrentContourVerification" classname="Game.Puzzles.Tests.CurrentContourVerification" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-05 19:35:43Z" end-time="2026-11-05 19:35:57Z" duration="14.332151" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1035" name="ExportContourComparison" fullname="Game.Puzzles.Tests.CurrentContourVerification.ExportContourComparison" classname="Game.Puzzles.Tests.CurrentContourVerification" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-05 19:35:43Z" end-time="2026-11-05 19:35:57Z" duration="14.221668" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1034" name="ExportContourComparison(11,False)" fullname="Game.Puzzles.Tests.CurrentContourVerification.ExportContourComparison(11,False)" methodname="ExportContourComparison" classname="Game.Puzzles.Tests.CurrentContourVerification" runstate="Runnable" seed="1876337372" result="Passed" start-time="2026-11-05 19:35:43Z" end-time="2026-11-05 19:35:57Z" duration="14.111814" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

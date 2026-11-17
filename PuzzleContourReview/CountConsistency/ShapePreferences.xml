@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Passed" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 19:24:55Z" end-time="2026-11-05 19:28:37Z" duration="222,0079721">
+  <test-suite type="TestSuite" id="1281" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="205" result="Passed" start-time="2026-11-05 19:24:55Z" end-time="2026-11-05 19:28:37Z" duration="222.007972" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1173" name="Game.Puzzles.Editor.Tests.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/Game.Puzzles.Editor.Tests.dll" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:24:55Z" end-time="2026-11-05 19:28:37Z" duration="221.913530" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1174" name="Game" fullname="Game" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:24:55Z" end-time="2026-11-05 19:28:37Z" duration="221.803715" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1175" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:24:55Z" end-time="2026-11-05 19:28:37Z" duration="221.694552" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1176" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:24:55Z" end-time="2026-11-05 19:28:37Z" duration="221.585183" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1136" name="PuzzleSlicerShapePreferenceTests" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-11-05 19:24:55Z" end-time="2026-11-05 19:28:37Z" duration="221.476780" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1152" name="AspectRatioIgnoresRotation" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.AspectRatioIgnoresRotation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 19:24:56Z" end-time="2026-11-05 19:24:56Z" duration="0.119381" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1148" name="AspectRatioIgnoresRotation(0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.AspectRatioIgnoresRotation(0.0f)" methodname="AspectRatioIgnoresRotation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1516326975" result="Passed" start-time="2026-11-05 19:24:56Z" end-time="2026-11-05 19:24:56Z" duration="0.008300" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1149" name="AspectRatioIgnoresRotation(17.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.AspectRatioIgnoresRotation(17.0f)" methodname="AspectRatioIgnoresRotation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1603033022" result="Passed" start-time="2026-11-05 19:24:56Z" end-time="2026-11-05 19:24:56Z" duration="0.000756" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1150" name="AspectRatioIgnoresRotation(53.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.AspectRatioIgnoresRotation(53.0f)" methodname="AspectRatioIgnoresRotation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="436565274" result="Passed" start-time="2026-11-05 19:24:56Z" end-time="2026-11-05 19:24:56Z" duration="0.000699" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1151" name="AspectRatioIgnoresRotation(90.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.AspectRatioIgnoresRotation(90.0f)" methodname="AspectRatioIgnoresRotation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1215415593" result="Passed" start-time="2026-11-05 19:24:56Z" end-time="2026-11-05 19:24:56Z" duration="0.000565" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1140" name="ComplexityBuildsMoreComplexPolygons" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.ComplexityBuildsMoreComplexPolygons" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-05 19:24:56Z" end-time="2026-11-05 19:25:07Z" duration="11.438536" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1137" name="ComplexityBuildsMoreComplexPolygons(11)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.ComplexityBuildsMoreComplexPolygons(11)" methodname="ComplexityBuildsMoreComplexPolygons" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1935738672" result="Passed" start-time="2026-11-05 19:24:56Z" end-time="2026-11-05 19:25:00Z" duration="4.077677" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1138" name="ComplexityBuildsMoreComplexPolygons(17)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.ComplexityBuildsMoreComplexPolygons(17)" methodname="ComplexityBuildsMoreComplexPolygons" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1643337946" result="Passed" start-time="2026-11-05 19:25:00Z" end-time="2026-11-05 19:25:04Z" duration="3.720374" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1139" name="ComplexityBuildsMoreComplexPolygons(31)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.ComplexityBuildsMoreComplexPolygons(31)" methodname="ComplexityBuildsMoreComplexPolygons" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1687414498" result="Passed" start-time="2026-11-05 19:25:04Z" end-time="2026-11-05 19:25:07Z" duration="3.543920" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1163" name="FeasiblePreferenceHoldsAfterContourChanges" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-05 19:25:07Z" end-time="2026-11-05 19:27:41Z" duration="153.954956" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1156" name="FeasiblePreferenceHoldsAfterContourChanges(11,0.0f,6,0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges(11,0.0f,6,0.0f)" methodname="FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1500079557" result="Passed" start-time="2026-11-05 19:25:07Z" end-time="2026-11-05 19:25:08Z" duration="1.136053" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Final oriented maximum: 1,51199961; requested 1.68; seed 11; count 6.
+]]></output>
+                </test-case>
+                <test-case id="1157" name="FeasiblePreferenceHoldsAfterContourChanges(17,0.0f,6,0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges(17,0.0f,6,0.0f)" methodname="FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1980645543" result="Passed" start-time="2026-11-05 19:25:08Z" end-time="2026-11-05 19:25:09Z" duration="1.142526" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Final oriented maximum: 1,52380955; requested 1.68; seed 17; count 6.
+]]></output>
+                </test-case>
+                <test-case id="1158" name="FeasiblePreferenceHoldsAfterContourChanges(11,1.0f,6,0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges(11,1.0f,6,0.0f)" methodname="FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="138760533" result="Passed" start-time="2026-11-05 19:25:09Z" end-time="2026-11-05 19:25:23Z" duration="13.203903" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Final oriented maximum: 1,64976263; requested 1.68; seed 11; count 6.
+]]></output>
+                </test-case>
+                <test-case id="1159" name="FeasiblePreferenceHoldsAfterContourChanges(17,1.0f,6,0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges(17,1.0f,6,0.0f)" methodname="FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1720941374" result="Passed" start-time="2026-11-05 19:25:23Z" end-time="2026-11-05 19:25:36Z" duration="13.656311" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Final oriented maximum: 1,299557; requested 1.68; seed 17; count 6.
+]]></output>
+                </test-case>
+                <test-case id="1160" name="FeasiblePreferenceHoldsAfterContourChanges(11,1.0f,12,0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges(11,1.0f,12,0.0f)" methodname="FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="816188140" result="Passed" start-time="2026-11-05 19:25:36Z" end-time="2026-11-05 19:26:03Z" duration="26.343099" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Final oriented maximum: 1,67586315; requested 1.68; seed 11; count 12.
+]]></output>
+                </test-case>
+                <test-case id="1161" name="FeasiblePreferenceHoldsAfterContourChanges(17,1.0f,24,0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges(17,1.0f,24,0.0f)" methodname="FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1196299234" result="Passed" start-time="2026-11-05 19:26:03Z" end-time="2026-11-05 19:27:13Z" duration="70.199134" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Final oriented maximum: 1,63058126; requested 1.68; seed 17; count 24.
+]]></output>
+                </test-case>
+                <test-case id="1162" name="FeasiblePreferenceHoldsAfterContourChanges(31,1.0f,12,0.35f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.FeasiblePreferenceHoldsAfterContourChanges(31,1.0f,12,0.35f)" methodname="FeasiblePreferenceHoldsAfterContourChanges" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="96793012" result="Passed" start-time="2026-11-05 19:27:13Z" end-time="2026-11-05 19:27:41Z" duration="28.267177" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Final oriented maximum: 1,62556779; requested 1.68; seed 31; count 12.
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1165" name="ImpossiblePreferenceReportsLimitAndActualMaximum" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.ImpossiblePreferenceReportsLimitAndActualMaximum" methodname="ImpossiblePreferenceReportsLimitAndActualMaximum" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1485813423" result="Passed" start-time="2026-11-05 19:27:41Z" end-time="2026-11-05 19:27:41Z" duration="0.225442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1146" name="IntermediateComplexityRespectsSideBudget" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.IntermediateComplexityRespectsSideBudget" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-05 19:27:41Z" end-time="2026-11-05 19:27:43Z" duration="2.056515" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1143" name="IntermediateComplexityRespectsSideBudget(0.125f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.IntermediateComplexityRespectsSideBudget(0.125f)" methodname="IntermediateComplexityRespectsSideBudget" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1038936472" result="Passed" start-time="2026-11-05 19:27:41Z" end-time="2026-11-05 19:27:42Z" duration="0.279745" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1144" name="IntermediateComplexityRespectsSideBudget(0.5f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.IntermediateComplexityRespectsSideBudget(0.5f)" methodname="IntermediateComplexityRespectsSideBudget" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="994933223" result="Passed" start-time="2026-11-05 19:27:42Z" end-time="2026-11-05 19:27:42Z" duration="0.098243" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1145" name="IntermediateComplexityRespectsSideBudget(0.875f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.IntermediateComplexityRespectsSideBudget(0.875f)" methodname="IntermediateComplexityRespectsSideBudget" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="90821874" result="Passed" start-time="2026-11-05 19:27:42Z" end-time="2026-11-05 19:27:43Z" duration="1.602229" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1166" name="SettingsValidateAndMigrate" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.SettingsValidateAndMigrate" methodname="SettingsValidateAndMigrate" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1342795690" result="Passed" start-time="2026-11-05 19:27:43Z" end-time="2026-11-05 19:27:43Z" duration="0.074228" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1141" name="SharedSideHasNoComplexityDeformation" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.SharedSideHasNoComplexityDeformation" methodname="SharedSideHasNoComplexityDeformation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="361594227" result="Passed" start-time="2026-11-05 19:27:43Z" end-time="2026-11-05 19:27:43Z" duration="0.017254" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1142" name="SideLimitTracksComplexityBeforeRounding" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.SideLimitTracksComplexityBeforeRounding" methodname="SideLimitTracksComplexityBeforeRounding" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1815952231" result="Passed" start-time="2026-11-05 19:27:43Z" end-time="2026-11-05 19:27:43Z" duration="0.001330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1147" name="SilhouetteInterruptionsDoNotMultiplyVisualSides" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.SilhouetteInterruptionsDoNotMultiplyVisualSides" methodname="SilhouetteInterruptionsDoNotMultiplyVisualSides" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1954397877" result="Passed" start-time="2026-11-05 19:27:43Z" end-time="2026-11-05 19:27:43Z" duration="0.017272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1164" name="SizeSpreadChangesPolygonAreas" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.SizeSpreadChangesPolygonAreas" methodname="SizeSpreadChangesPolygonAreas" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="292819616" result="Passed" start-time="2026-11-05 19:27:43Z" end-time="2026-11-05 19:28:00Z" duration="16.540003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1155" name="TighterPreferenceReducesElongation" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.TighterPreferenceReducesElongation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-05 19:28:00Z" end-time="2026-11-05 19:28:37Z" duration="36.917558" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1153" name="TighterPreferenceReducesElongation(0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.TighterPreferenceReducesElongation(0.0f)" methodname="TighterPreferenceReducesElongation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="1173191916" result="Passed" start-time="2026-11-05 19:28:00Z" end-time="2026-11-05 19:28:03Z" duration="3.094851" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1154" name="TighterPreferenceReducesElongation(1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests.TighterPreferenceReducesElongation(1.0f)" methodname="TighterPreferenceReducesElongation" classname="Game.Puzzles.Tests.PuzzleSlicerShapePreferenceTests" runstate="Runnable" seed="2119875354" result="Passed" start-time="2026-11-05 19:28:03Z" end-time="2026-11-05 19:28:37Z" duration="33.815921" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

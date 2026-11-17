@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532c4578b84a4caa89085f8ca174e7c4, type: 3}
+  m_Name: CompassBoosterData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Boosters.CompassBoosterData
+  Name: Hint
+  Description: Stuck? A hint shows where to look.
+  Icon: {fileID: 21300000, guid: 42202647951e53c4e9f6b788d8df4d31, type: 3}
+  InitialValue: 3
+  Price: {fileID: 11400000, guid: 635de931853a7dd4899fbe025f8b7052, type: 2}
+  Reward: {fileID: 11400000, guid: ae4725a1396e37b4db4c8679fd351e06, type: 2}
+  HintDuration: 30
+  Hint:
+    FingerSprite: {fileID: 21300000, guid: c0ab9317b194a7448b58370a3523fae6, type: 3}
+    FingerSize: {x: 110, y: 110}
+    Fingertip: {x: 0.2, y: 0.95}
+    PulseDuration: 0.8
+    PulseScale: 0.15
+  OpenLevel: 4

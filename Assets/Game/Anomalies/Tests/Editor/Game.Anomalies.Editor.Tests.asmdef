@@ -1,0 +1,6 @@
+{
+    "name": "Game.Anomalies.Editor.Tests",
+    "references": ["Game.Anomalies"],
+    "includePlatforms": ["Editor"],
+    "optionalUnityReferences": ["TestAssemblies"]
+}

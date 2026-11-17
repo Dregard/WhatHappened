@@ -1,0 +1,1 @@
+PASS empty and single-piece limits; Hard random permutations vary across seeds.

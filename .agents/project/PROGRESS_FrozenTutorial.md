@@ -1,0 +1,19 @@
+# Frozen-piece tutorial handoff
+
+## User decision and implementation
+Show once for the entire saved game, upon the first level with ice, completing after the demonstrated piece snaps. English instruction: "Place a piece next to the frozen piece to thaw it." No tray changes when the tutorial is absent.
+
+Current contracts are documented in `.agents/project/DOMAIN_Puzzles.md`. Implemented paths:
+- `Assets/Game/Gameplay/GameplayProgressProfile.cs` and `Assets/Game/Gameplay/GameplayProgressController.cs`: lifetime completion flag, default false for legacy saves.
+- `Assets/Game/Tutorial/FrozenPieceTutorialController.cs` and `Assets/Game/Gameplay/LevelsManager.cs`: prepare after initialization, start after preview, queue level-authored tutorials, save through existing ProfileSystem on completion, dispose without completion on interruption.
+- `Assets/Game/Puzzles/FrozenPieceSelectionController.cs`, `Assets/Game/Puzzles/PuzzleFreezeSystem.cs`, `Assets/Game/Puzzles/PuzzleTray.cs`, `Assets/Game/Levels/LevelController.cs`: retain original first-piece freezing exclusion and side/corner contact exclusions, preserve feasible frozen count, choose an unfrozen actual shared-boundary neighbor, promote only that piece when requested.
+- `Assets/Game/Tutorial/FingerAnimationController.cs`: shared ControlTutorial gesture, actual transformed endpoints each cycle, pickup/return/snap rules and lifetime cleanup.
+- `Assets/Game/Tutorial/TutorialController.cs`: completion event after existing signal.
+- `Assets/Game/Tutorial/FrozenPieceTutorial.prefab`: Unity-created ControlTutorial variant, English instruction with existing booster text style. `Assets/Game/Levels/LevelsData.cs` and `Assets/Game/Levels/LevelsData.asset` provide the serialized reference.
+
+## Evidence and remaining checks
+Unity compilation passed. Final diff whitespace check passed using normal repository line-ending handling; overriding core.autocrlf=false produced irrelevant CRLF whitespace noise and was corrected without rewriting repository formatting.
+A temporary isolated PlayMode scenario used production level/piece/tutorial prefabs and `Assets/Game/Levels/Level3/Level3_PuzzleData.asset`. It reached 11 assertions: default/legacy incomplete flags, feasible frozen count and first-piece exclusion, an unfrozen positive-seam neighbor, promoted first tray piece with other relative order preserved, hidden instruction before start and correct English text without raycast interception.
+The editor reported playing=true, paused=false, timeScale=1, but Time.frameCount stayed at 1. Normal Start/Update callbacks did not run, even with an EditorApplication.QueuePlayerLoopUpdate callback. The fixture consequently hit a NullReferenceException at `Assets/Game/Tutorial/TutorialController.cs` StartNextStep because its Start callback had not initialized the runner. This is not evidence that the production post-preview path fails; runtime acceptance remains unavailable, not passed. A transient bridge connection expired before dispatch; subsequent readiness recovered. No real multiplayer checks were launched.
+Pending: moving hand endpoints and visible style in a running player loop, wrong-drop return/resume, successful snap and thaw, immediate profile disk round trip and fresh-session suppression, zero-ice/post-completion ordinary tray order, remaining-piece placement and victory after thaw, interrupted cleanup and authored tutorial sequencing. Review the complete original user requirements when continuing.
+The temporary scope `Assets/__OrchestratorTemp-59f1549cfd7f485fa1187f8172d7aa49` is disposable and will be sealed for orchestrator cleanup; do not depend on it in continuation. Recreate only the necessary focused scenario in a newly allocated scope, or obtain manual Unity acceptance evidence. Do not replay unknown bridge mutations or start another Unity instance. Preserve unrelated pre-existing repository changes.

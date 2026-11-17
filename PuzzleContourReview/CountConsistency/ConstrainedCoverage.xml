@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Passed" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 19:29:26Z" end-time="2026-11-05 19:29:43Z" duration="16,8604216">
+  <test-suite type="TestSuite" id="1282" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="205" result="Passed" start-time="2026-11-05 19:29:26Z" end-time="2026-11-05 19:29:43Z" duration="16.860422" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1173" name="Game.Puzzles.Editor.Tests.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/Game.Puzzles.Editor.Tests.dll" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:29:26Z" end-time="2026-11-05 19:29:43Z" duration="16.853499" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1174" name="Game" fullname="Game" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:29:26Z" end-time="2026-11-05 19:29:43Z" duration="16.744087" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1175" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:29:26Z" end-time="2026-11-05 19:29:43Z" duration="16.640873" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1176" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:29:26Z" end-time="2026-11-05 19:29:43Z" duration="16.529538" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1078" name="PuzzleSlicerConstructiveGenerationTests" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-11-05 19:29:27Z" end-time="2026-11-05 19:29:43Z" duration="16.425763" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1093" name="ConstructiveContoursRetainCoverage" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-05 19:29:27Z" end-time="2026-11-05 19:29:43Z" duration="16.288109" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1085" name="ConstructiveContoursRetainCoverage(0,1,1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(0,1,1.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="888888891" result="Passed" start-time="2026-11-05 19:29:27Z" end-time="2026-11-05 19:29:27Z" duration="0.631351" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1086" name="ConstructiveContoursRetainCoverage(0,7,0.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(0,7,0.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="323931579" result="Passed" start-time="2026-11-05 19:29:27Z" end-time="2026-11-05 19:29:30Z" duration="2.570551" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1087" name="ConstructiveContoursRetainCoverage(0,7,1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(0,7,1.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="1704130793" result="Passed" start-time="2026-11-05 19:29:30Z" end-time="2026-11-05 19:29:31Z" duration="1.104748" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1088" name="ConstructiveContoursRetainCoverage(1,9,1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(1,9,1.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="1606537692" result="Passed" start-time="2026-11-05 19:29:31Z" end-time="2026-11-05 19:29:33Z" duration="1.805626" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1089" name="ConstructiveContoursRetainCoverage(2,5,1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(2,5,1.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="1932793860" result="Passed" start-time="2026-11-05 19:29:33Z" end-time="2026-11-05 19:29:34Z" duration="0.892327" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1090" name="ConstructiveContoursRetainCoverage(2,1,1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(2,1,1.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="14479897" result="Passed" start-time="2026-11-05 19:29:34Z" end-time="2026-11-05 19:29:34Z" duration="0.112591" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1091" name="ConstructiveContoursRetainCoverage(3,1,1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(3,1,1.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="543620529" result="Passed" start-time="2026-11-05 19:29:34Z" end-time="2026-11-05 19:29:34Z" duration="0.471617" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1092" name="ConstructiveContoursRetainCoverage(3,7,1.0f)" fullname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests.ConstructiveContoursRetainCoverage(3,7,1.0f)" methodname="ConstructiveContoursRetainCoverage" classname="Game.Puzzles.Tests.PuzzleSlicerConstructiveGenerationTests" runstate="Runnable" seed="1972405104" result="Passed" start-time="2026-11-05 19:29:34Z" end-time="2026-11-05 19:29:43Z" duration="8.558665" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,9 @@
+# Network implementation and manual acceptance
+- Never autonomously test real multiplayer connections. Do not launch multiple game clients, host/client/server or headless processes, Steam friends/lobbies/invites, LAN/relay/loopback transport peers, including through tests. Do not create/run a real-connection harness. This applies even if an old task asks for such automatic acceptance. Do not request permission to run these checks.
+- Allowed automatic checks: source/call-site inspection, compilation, serialization/authority/lifecycle logic tests using fakes or in-memory transport with no sockets or actual peers. Inspect test behavior before selecting a suite; exclude tests opening real peers. Preserve existing tests; do not delete them to obtain a passing suite.
+- List actual multi-player scenarios for the user to verify manually. Never claim them passed from isolated tests. In the orchestrator report required manual checks as pending, status=verification_pending, blockerKind=external_verification, with reason and user-confirmation condition. SafeMode decides whether to pause or finish with warnings; it never turns an unperformed check into a passed check.
+- Preserve server authority, ownership, idempotency, disconnect/death/restoration and state/presentation separation. Do not weaken behavior to fit available verification.
+
+## Conditional domain rules
+- Read [NETWORK_MOVEMENT_RULES.md](NETWORK_MOVEMENT_RULES.md) when changing player movement authority/ticks, prediction/reconcile/replay, hook movement ownership, smoothing or landing/stop diagnostics. Other network work does not require this movement-specific file.
+- Read [NETWORK_COMBAT_RULES.md](NETWORK_COMBAT_RULES.md) when changing combat authority, attack timing/effects/events, duplicate delivery, combat replay or combat lifetime transitions.

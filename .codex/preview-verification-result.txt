@@ -1,0 +1,7 @@
+PASS
+Uncached Level39: 11053816 bytes; actual HTTP bundle requests are delayed 2 seconds.
+Ready hold 1,017s; preview 2,007s; authored hold 0,700s, total 2,000s.
+Cold delayed load: current full texture rendered; authored viewing and animation durations preserved; assembly started.
+Ready hold 1,040s; preview 2,049s; authored hold 0,700s, total 2,000s.
+Restart during load and switch during preview: obsolete work canceled, no previous texture shown; new preview completed.
+Actual delayed HTTP bundle requests: 5.

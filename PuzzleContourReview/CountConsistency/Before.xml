@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156,9963848">
+  <test-suite type="TestSuite" id="1000" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="195" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156.996385" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1032" name="CountExpressionVerification.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/CountExpressionVerification.dll" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156.876027" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1033" name="Game" fullname="Game" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156.790404" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1034" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156.679621" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1035" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156.570374" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1026" name="CountExpressionVerification" fullname="Game.Puzzles.Tests.CountExpressionVerification" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156.460030" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1031" name="Export" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:20:52Z" duration="156.340915" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1027" name="Export(512,13,False)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,13,False)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1182817699" result="Passed" start-time="2026-11-05 18:18:15Z" end-time="2026-11-05 18:18:39Z" duration="23.630427" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1028" name="Export(512,26,False)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,26,False)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1046555762" result="Passed" start-time="2026-11-05 18:18:39Z" end-time="2026-11-05 18:19:21Z" duration="42.287570" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1029" name="Export(512,52,False)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,52,False)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1340082225" result="Passed" start-time="2026-11-05 18:19:21Z" end-time="2026-11-05 18:20:38Z" duration="77.243919" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1030" name="Export(128,26,True)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(128,26,True)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1340069603" result="Passed" start-time="2026-11-05 18:20:38Z" end-time="2026-11-05 18:20:51Z" duration="13.048140" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

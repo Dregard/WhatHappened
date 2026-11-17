@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 18:30:51Z" end-time="2026-11-05 18:32:07Z" duration="76,3463881">
+  <test-suite type="TestSuite" id="1000" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="195" result="Passed" start-time="2026-11-05 18:30:51Z" end-time="2026-11-05 18:32:07Z" duration="76.346388" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1032" name="CountExpressionVerification.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/CountExpressionVerification.dll" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:30:51Z" end-time="2026-11-05 18:32:07Z" duration="76.224329" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1033" name="Game" fullname="Game" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:30:51Z" end-time="2026-11-05 18:32:07Z" duration="76.148066" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1034" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:30:51Z" end-time="2026-11-05 18:32:07Z" duration="76.038781" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1035" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:30:52Z" end-time="2026-11-05 18:32:07Z" duration="75.931079" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1026" name="CountExpressionVerification" fullname="Game.Puzzles.Tests.CountExpressionVerification" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:30:52Z" end-time="2026-11-05 18:32:07Z" duration="75.818749" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1031" name="Export" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 18:30:52Z" end-time="2026-11-05 18:32:07Z" duration="75.706944" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1028" name="Export(512,26,False)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,26,False)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="989316707" result="Passed" start-time="2026-11-05 18:30:52Z" end-time="2026-11-05 18:32:07Z" duration="75.584887" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

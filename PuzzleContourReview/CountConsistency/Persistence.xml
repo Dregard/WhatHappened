@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="183,4253682">
+  <test-suite type="TestSuite" id="1285" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="205" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="183.425368" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1041" name="CurrentContourVerification.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/CurrentContourVerification.dll" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="183.318580" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1042" name="Game" fullname="Game" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="183.211362" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1043" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="183.103622" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1044" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="182.994094" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1033" name="CurrentContourVerification" fullname="Game.Puzzles.Tests.CurrentContourVerification" classname="Game.Puzzles.Tests.CurrentContourVerification" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="182.883701" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1038" name="BakeLoadRetainsGeneratedPartition" fullname="Game.Puzzles.Tests.CurrentContourVerification.BakeLoadRetainsGeneratedPartition" classname="Game.Puzzles.Tests.CurrentContourVerification" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:35:21Z" duration="182.771205" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1036" name="BakeLoadRetainsGeneratedPartition(512,False,0.0f,100.0f)" fullname="Game.Puzzles.Tests.CurrentContourVerification.BakeLoadRetainsGeneratedPartition(512,False,0.0f,100.0f)" methodname="BakeLoadRetainsGeneratedPartition" classname="Game.Puzzles.Tests.CurrentContourVerification" runstate="Runnable" seed="930446188" result="Passed" start-time="2026-11-05 19:32:18Z" end-time="2026-11-05 19:34:46Z" duration="147.805615" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[✅ Puzzle Bake Successful! 26 pieces created.
+✅ Loaded 26 pieces from PuzzleData.
+✅ Puzzle Bake Successful! 26 pieces created.
+]]></output>
+                </test-case>
+                <test-case id="1037" name="BakeLoadRetainsGeneratedPartition(128,True,1.0f,100.0f)" fullname="Game.Puzzles.Tests.CurrentContourVerification.BakeLoadRetainsGeneratedPartition(128,True,1.0f,100.0f)" methodname="BakeLoadRetainsGeneratedPartition" classname="Game.Puzzles.Tests.CurrentContourVerification" runstate="Runnable" seed="567631988" result="Passed" start-time="2026-11-05 19:34:46Z" end-time="2026-11-05 19:35:21Z" duration="34.854216" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[✅ Puzzle Bake Successful! 12 pieces created.
+✅ Loaded 12 pieces from PuzzleData.
+✅ Puzzle Bake Successful! 12 pieces created.
+Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

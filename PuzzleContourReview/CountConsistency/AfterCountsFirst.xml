@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 18:36:31Z" end-time="2026-11-05 18:40:43Z" duration="252,4785479">
+  <test-suite type="TestSuite" id="1000" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="200" result="Failed" site="Child" start-time="2026-11-05 18:36:31Z" end-time="2026-11-05 18:40:43Z" duration="252.478548" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1035" name="CountExpressionVerification.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/CountExpressionVerification.dll" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-05 18:36:31Z" end-time="2026-11-05 18:40:43Z" duration="252.357647" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1036" name="Game" fullname="Game" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-05 18:36:31Z" end-time="2026-11-05 18:40:43Z" duration="252.271322" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1037" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-05 18:36:31Z" end-time="2026-11-05 18:40:43Z" duration="252.162164" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1038" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-05 18:36:31Z" end-time="2026-11-05 18:40:43Z" duration="252.053313" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1026" name="CountExpressionVerification" fullname="Game.Puzzles.Tests.CountExpressionVerification" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-05 18:36:31Z" end-time="2026-11-05 18:40:43Z" duration="251.943092" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-suite type="ParameterizedMethod" id="1030" name="Export" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-05 18:36:32Z" end-time="2026-11-05 18:40:43Z" duration="251.824638" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1027" name="Export(512,13,False)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,13,False)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="1535850245" result="Passed" start-time="2026-11-05 18:36:32Z" end-time="2026-11-05 18:37:13Z" duration="40.934514" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1028" name="Export(512,52,False)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(512,52,False)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="489492767" result="Failed" start-time="2026-11-05 18:37:13Z" end-time="2026-11-05 18:40:22Z" duration="189.019632" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[Timeout value of 180000 ms was exceeded. If this is intended, increase the timeout value using a TimeoutAttribute.]]></message>
+                    <stack-trace><![CDATA[]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1029" name="Export(128,26,True)" fullname="Game.Puzzles.Tests.CountExpressionVerification.Export(128,26,True)" methodname="Export" classname="Game.Puzzles.Tests.CountExpressionVerification" runstate="Runnable" seed="839547645" result="Passed" start-time="2026-11-05 18:40:22Z" end-time="2026-11-05 18:40:43Z" duration="21.746741" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

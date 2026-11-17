@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1280d85850014b158323913200dfad50, type: 3}
+  m_Name: FreezeTimerBoosterData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Boosters.FreezeTimerBoosterData
+  Name: Photo
+  Description: Peek at the original once more!
+  Icon: {fileID: 21300000, guid: e6dae31f9acee124fa93b30e022c9018, type: 3}
+  InitialValue: 2
+  Price: {fileID: 11400000, guid: 04a8f96f7cf205a429bde6fd55ab95e0, type: 2}
+  Reward: {fileID: 11400000, guid: 60fcfd6a89f23d643a030dc1605891a5, type: 2}
+  OpenLevel: 11

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8b64e383b54350aacad8ef6dc6d6a5, type: 3}
+  m_Name: SfxData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.SFX.SfxData
+  _prefabs:
+  - {fileID: 4366354401162596784, guid: 6fc0f94744dd154469c4686193cd367e, type: 3}
+  - {fileID: 4366354401162596784, guid: e82d30f56947207459668e9516a0cce4, type: 3}
+  - {fileID: 4366354401162596784, guid: b89091e324a167c42907f4f537349dfe, type: 3}
+  - {fileID: 4366354401162596784, guid: c188922606e3fda49af800b6784cffab, type: 3}
+  - {fileID: 4366354401162596784, guid: d2094e7b4c255ca4090a9297fcbb6bf3, type: 3}
+  - {fileID: 4366354401162596784, guid: aa51e5ec6b978704cbb66034f582828f, type: 3}
+  - {fileID: 4366354401162596784, guid: 6767929a2ce7d69469bc68e57148dac2, type: 3}
+  - {fileID: 4366354401162596784, guid: fc3085bdee63f624e92eeb5778dd4a84, type: 3}
+  - {fileID: 4366354401162596784, guid: cb1b21f480c2f12418ab1e5c00af1f52, type: 3}
+  - {fileID: 4366354401162596784, guid: 0bde6b0cb46a52a478ae2ee495d7a914, type: 3}
+  - {fileID: 4366354401162596784, guid: f3e5cb0bcfe7c144698758f1cd917de7, type: 3}
+  - {fileID: 4366354401162596784, guid: 5e682bc6d96963f4abd9e857738eb320, type: 3}
+  - {fileID: 2897197809865307987, guid: d308748c1ba92f247bd69e7bb1894acd, type: 3}

@@ -1,0 +1,13 @@
+# Hierarchy
+- Organize new project-owned features by domain/owner: keep a domain's code and exclusively owned prefabs, configuration, art, materials, animation, audio, VFX and relevant scenes under one domain root. Use the established project content root; do not assume `Assets/Scripts` or require a fixed `Assets/Game` path.
+- A domain is a cohesive feature/subsystem with meaningful responsibility, not each class or asset type. Use domain-first organization without requiring tactical DDD patterns or extra architectural layers.
+- Within a domain, create only useful folders such as Runtime, Prefabs, Configuration, Art, Audio, Animations, VFX, Editor and Tests. These are examples, not mandatory scaffolding; group code roles using the established layout.
+- Class responsibility follows ARCHITECTURE_RULES: placing a file under a domain does not justify mixing responsibilities inside it. Keep specialized code discoverable under its authoritative feature owner; integration/location folders do not own every feature they connect.
+- Place an asset by its authoritative owner, not every consumer. Keep one shared copy when multiple domains use it; document significant ownership/dependencies. Shared resources need a clear purpose/owner, not a miscellaneous dumping ground. Keep technical infrastructure separate from gameplay domains.
+- Composition scenes/content spanning multiple domains may live under the existing composition/location owner. Preserve third-party/package layouts and Unity special-folder requirements. Folder ownership does not automatically determine Addressables groups or bundle boundaries.
+- Add subdirectories only for useful navigation; no empty folders/unnecessary nesting. Follow existing namespaces/assemblies; keep Editor-only code in Editor directories/assemblies.
+- One top-level class/struct/interface/enum/delegate per file; filename matches type, including suffix, excluding generic parameters.
+- Exceptions: nested signal structs in domain Signals containers and nested interface-contract delegates; not unrelated types.
+- Apply domain-first organization to new modules. In legacy areas, extend the established local layout until a coherent migration is in scope; do not create a second root for the same domain. Preserve existing paths unless the task requires moving them; no unsolicited whole-project migration. Asset moves follow UNITY_ASSET_RULES.
+- Preserve assembly boundaries. Use assembly definitions to enforce meaningful dependency boundaries only when justified by the task; no assembly per small feature or cosmetic reorganization.
+- AI context lives under `.agents/project/`, not per-folder READMEs; follow PROJECT_CONTEXT_RULES when writing it.

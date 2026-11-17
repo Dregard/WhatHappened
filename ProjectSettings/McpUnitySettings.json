@@ -1,0 +1,6 @@
+{
+  "Port": 61332,
+  "AutoStartServer": true,
+  "NpmExecutablePath": "C:\\Program Files\\nodejs\\npm.cmd",
+  "RequestTimeoutSeconds": 120
+}

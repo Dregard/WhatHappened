@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa0235260b229e4880113fafc5ecd91, type: 3}
+  m_Name: UiThemeData
+  m_EditorClassIdentifier: Game.Anomalies::Game.Anomalies.UiThemeData
+  Background: {fileID: 21300000, guid: 40d6b5ac8fd675c48be3cd1b59f67e72, type: 3}
+  BoardFrame: {fileID: 21300000, guid: 62961660761cf114c9959e8fb3fc27b8, type: 3}
+  PanelDark: {fileID: 21300000, guid: e1825e6e5f31ef7458d58414d218cadd, type: 3}
+  PopupBody: {fileID: 21300000, guid: 1d460233fe1236a47a043bf8a42667f0, type: 3}
+  PopupBodyTall: {fileID: 21300000, guid: cc86eb408b92117488ae780ae9c27dfc, type: 3}
+  BannerStrip: {fileID: 21300000, guid: d6aa4d39ed16a0a45a764e763f4c1af1, type: 3}
+  PlateCounter: {fileID: 21300000, guid: b847d328b05594f4d897778525a4b900, type: 3}
+  PlateChapter: {fileID: 21300000, guid: 40b172b375a7a1d4581b7989c2696d14, type: 3}
+  PlateTask: {fileID: 21300000, guid: 656960db2e1b1454aa493f7cbd8d9e85, type: 3}
+  PlateNarrative: {fileID: 21300000, guid: a395fd9c035b7e444ab1b1f0e47fe20f, type: 3}
+  TapeRed: {fileID: 21300000, guid: bbc618119d6eb9340bc319e76b456976, type: 3}
+  PinRed: {fileID: 21300000, guid: 3713088a7d5aa814bbc1e62ea474ea74, type: 3}
+  Polaroid: {fileID: 21300000, guid: 30eb17717c40f9e46bc0dfa201bf482f, type: 3}
+  RibbonRed: {fileID: 21300000, guid: 69bf4b5f032223f428866d5ad6281765, type: 3}
+  ButtonGreen: {fileID: 21300000, guid: a5ded2cdde1ecc44ba47f7e3758c9a13, type: 3}
+  ButtonPurple: {fileID: 21300000, guid: 2859c81e302bb1548a5620c04ee369fc, type: 3}
+  CloseIcon: {fileID: 21300000, guid: e6bf9aa0afe704c45a5e5bbb6c7135ea, type: 3}
+  BadgeGreen: {fileID: 21300000, guid: 98e15636648538b40946d8870e0e60e2, type: 3}
+  CoinIcon: {fileID: 21300000, guid: 890ce60eff7e8a5449124361902fbab3, type: 3}
+  HintIcon: {fileID: 21300000, guid: 9cbb9462e3e9a0d44822eed3f021d117, type: 3}
+  HintPackIcon: {fileID: 21300000, guid: fd9485c02acac9246b9edc1ab51346e8, type: 3}
+  CameraIcon: {fileID: 21300000, guid: 6b6802acd0559034c97696f4a4f3efff, type: 3}
+  CameraPackIcon: {fileID: 21300000, guid: d9b93eafec0375d4c9e88bb257a5d77e, type: 3}
+  AdsIcon: {fileID: 21300000, guid: ad8a9695abecd5143a107b9ff51ff4b2, type: 3}
+  FingerIcon: {fileID: 21300000, guid: c0ab9317b194a7448b58370a3523fae6, type: 3}
+  ClueCounterIcon: {fileID: 0}
+  SlotEmpty: {fileID: 21300000, guid: acd60068c9c444147a61c85cb6dc3ef5, type: 3}
+  SlotFoundFrame: {fileID: 21300000, guid: 9e74101af8cdf2d45bb6509f3a3b3e9b, type: 3}
+  CheckIcon: {fileID: 21300000, guid: 4383058d8541a8b47a2522e08c9fad1c, type: 3}
+  MarkCorrect: {fileID: 21300000, guid: 929d8f1b5276abb48a970f1156d379bb, type: 3}
+  HintTargetRing: {fileID: 21300000, guid: 7b823e034c841294985496a914c59f5a, type: 3}
+  TimerRing: {fileID: 21300000, guid: 7aa3630b16f8b294d95e46b18d107f9d, type: 3}
+  EvidenceRing: {fileID: 21300000, guid: 001a3109ff99dcc43b04e5049b52bf1f, type: 3}
+  EvidenceDisc: {fileID: 21300000, guid: c9ca67f129c1c7d42962ebfe33b72e9f, type: 3}
+  EvidenceEmpty: {fileID: 21300000, guid: 7041b7e392b570e4b9871294ad005b22, type: 3}
+  EvidenceBigContour: {fileID: 21300000, guid: 2c00677b3ec8f3b47b090b43ef5dec6f, type: 3}
+  Sunburst: {fileID: 21300000, guid: 7d7bc83d2b211d547bc518750443baae, type: 3}
+  Logo: {fileID: 21300000, guid: c621ef78b39206c48b82b0dd090616c0, type: 3}
+  CaseSolvedStamp: {fileID: 21300000, guid: 52eb6c4c3e0d739438ee1bc8ce43339d, type: 3}
+  Particle: {fileID: 21300000, guid: 2487669b984197a4f97df17894feb2b0, type: 3}
+  TrailGlow: {fileID: 21300000, guid: 65e853187483f534693d3dcda2d50240, type: 3}
+  Font: {fileID: 11400000, guid: e6c845d1df3227947aad5d42847d02aa, type: 2}
+  LightTextColor: {r: 1, g: 1, b: 1, a: 1}
+  LightOutlineColor: {r: 0.1, g: 0.05, b: 0.2, a: 1}
+  DarkTextColor: {r: 0.31, g: 0.16, b: 0.07, a: 1}
+  GoldTextColor: {r: 1, g: 0.85, b: 0.25, a: 1}
+  GoldOutlineColor: {r: 0.35, g: 0.17, b: 0.02, a: 1}
+  OutlineWidth: 0.28
+  BoldText: 1
+  VeilColor: {r: 0.06, g: 0.03, b: 0.14, a: 0.82}
+  PhotoVeilColor: {r: 0.05, g: 0.03, b: 0.12, a: 0.96}
+  ClosedSlotColor: {r: 1, g: 1, b: 1, a: 1}

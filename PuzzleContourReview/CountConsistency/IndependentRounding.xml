@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 19:32:04Z" end-time="2026-11-05 19:32:08Z" duration="3,5450682">
+  <test-suite type="TestSuite" id="1284" name="Glass Master" fullname="Glass Master" runstate="Runnable" testcasecount="205" result="Passed" start-time="2026-11-05 19:32:04Z" end-time="2026-11-05 19:32:08Z" duration="3.545068" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1173" name="Game.Puzzles.Editor.Tests.dll" fullname="C:/Users/karda/OneDrive/Desktop/GitHub/Glass_Master/Library/ScriptAssemblies/Game.Puzzles.Editor.Tests.dll" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:32:04Z" end-time="2026-11-05 19:32:08Z" duration="3.444609" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1174" name="Game" fullname="Game" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:32:04Z" end-time="2026-11-05 19:32:08Z" duration="3.338461" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1175" name="Puzzles" fullname="Game.Puzzles" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:32:04Z" end-time="2026-11-05 19:32:08Z" duration="3.229775" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1176" name="Tests" fullname="Game.Puzzles.Tests" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-05 19:32:05Z" end-time="2026-11-05 19:32:08Z" duration="3.119235" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1100" name="PuzzleSlicerGenerationTests" fullname="Game.Puzzles.Tests.PuzzleSlicerGenerationTests" classname="Game.Puzzles.Tests.PuzzleSlicerGenerationTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-05 19:32:05Z" end-time="2026-11-05 19:32:08Z" duration="3.009146" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1112" name="IndependentCornerAndSideRounding" fullname="Game.Puzzles.Tests.PuzzleSlicerGenerationTests.IndependentCornerAndSideRounding" methodname="IndependentCornerAndSideRounding" classname="Game.Puzzles.Tests.PuzzleSlicerGenerationTests" runstate="Runnable" seed="2114053343" result="Passed" start-time="2026-11-05 19:32:05Z" end-time="2026-11-05 19:32:08Z" duration="2.897679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/karda/AppData/LocalLow/Gameson/Glass Master\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,5 @@
+{
+    "name": "Game.Anomalies.PlayMode.Tests",
+    "references": ["Game.Anomalies", "Unity.ugui", "Zenject"],
+    "optionalUnityReferences": ["TestAssemblies"]
+}
