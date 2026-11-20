@@ -1,0 +1,67 @@
+        #region Result sequence
+
+        /// <summary>Opens the single result window and waits for its sequence: evidence found -> level reward, or (final level) evidence found -> all evidences -> culprit reveal -> culprit scene -> chapter reward. The window stays open throughout; stages swap inside it.</summary>
+        private async UniTaskVoid RunResult(bool isEvidenceFound, Sprite clue, string clueName, Action continueLevel, Action continueChapter)
+        {
+            var generation = _generation;
+            _flowCancellation = new CancellationTokenSource();
+            var token = _flowCancellation.Token;
+            try
+            {
+                var chapter = _progress.CurrentChapter;
+                var isFinal = isEvidenceFound ? _progress.ClueCount + 1 == chapter.LevelsArray.Length : _progress.IsChapterComplete;
+                var index = _progress.ClueCount;
+                var done = new UniTaskCompletionSource();
+                var model = new ChapterResultWindowModel
+                {
+                    HasEvidence = isEvidenceFound,
+                    NewClueIndex = index,
+                    NewClue = clue,
+                    NewClueName = clueName,
+                    IsFinal = isFinal,
+                    GetClues = Snapshot,
+                    ClaimLevelReward = ClaimLevelReward,
+                    ClaimChapterReward = ClaimChapterReward,
+                    CulpritPortrait = chapter.CulpritPortrait,
+                    CulpritCaption = chapter.CulpritCaption,
+                    CulpritSceneImage = chapter.CulpritSceneImage,
+                    CulpritSceneCaption = chapter.CulpritSceneCaption,
+                    ChapterRewardHeading = "Chapter complete!",
+                    FlightDuration = _data.EvidenceFlightDuration,
+                    ConvergenceDuration = _data.AllEvidenceDuration,
+                    RevealDuration = _data.CulpritRevealDuration,
+                    SunburstTurnSeconds = _data.SunburstTurnSeconds,
+                    FadeSeconds = _data.ResultFadeSeconds,
+                    ContinueAction = () => done.TrySetResult(),
+                };
+                if (isFinal)
+                    model.ChapterRewardsList = Describe(chapter.RewardsList, 3);
+                else
+                    model.LevelRewardsList = Describe(chapter.LevelRewardsList, 1);
+                model.CommitClue = () =>
+                {
+                    _cluesArray[index] = clue;
+                    return CommitClue();
+                };
+                await _windows.Open<ChapterResultWindow>(new ChapterWindowModelParams<ChapterResultWindowModel> { Model = model });
+                _closeCurrentWindow = () => _windows.Close<ChapterResultWindow>();
+                _isPresenting = false;
+                await done.Task.AttachExternalCancellation(token);
+                if (generation == _generation)
+                    (isFinal || _progress.IsChapterComplete ? continueChapter : continueLevel)?.Invoke();
+            }
+            catch (OperationCanceledException)
+            {
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception);
+            }
+        }
+
+        /// <summary>Builds a snapshot with exactly one slot per configured level, exposing found sprites only.</summary>
+        private Sprite[] Snapshot()
+        {
+            return _cluesArray.Select((sprite, index) => index < _progress.ClueCount ? sprite : null).ToArray();
+        }
+

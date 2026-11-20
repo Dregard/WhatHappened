@@ -265,7 +265,7 @@ namespace Game.Gameplay
         private async UniTask ContinueLevel()
         {
             var generation = _sessionGeneration;
-            await _windowSystem.Close<ChapterWindow>();
+            await _chapters.CloseWindows();
             ThrowIfSessionInvalid(generation);
             await Restart();
         }
@@ -276,7 +276,7 @@ namespace Game.Gameplay
             if (!_progressController.StartNextChapter())
                 return;
             _profileSystem.Save();
-            await _windowSystem.Close<ChapterWindow>();
+            await _chapters.CloseWindows();
             await Restart();
         }
 

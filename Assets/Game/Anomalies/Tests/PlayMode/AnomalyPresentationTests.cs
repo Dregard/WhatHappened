@@ -166,11 +166,40 @@ namespace Game.Anomalies.Tests
             Assert.That(_view.transform.Find("Slots").childCount, Is.Zero);
         }
 
+        /// <summary>Checks that the board frame hugs the fitted picture for landscape, portrait and square photos and that hit conversion still uses the picture rectangle.</summary>
+        [UnityTest]
+        public IEnumerator BoardFrameFollowsFittedPicture()
+        {
+            foreach (var size in new[] { new Vector2Int(20, 10), new Vector2Int(10, 20), new Vector2Int(10, 10), new Vector2Int(9, 16) })
+            {
+                var texture = new Texture2D(size.x, size.y);
+                var sprite = Sprite.Create(texture, new Rect(0, 0, size.x, size.y), Vector2.one * 0.5f);
+                Object.DestroyImmediate(_view.gameObject);
+                _data.MainImage = sprite;
+                CreateAttempt();
+                yield return null;
+                Canvas.ForceUpdateCanvases();
+                var picture = AnomalyUi.LocalRect(FindImage("Original").rectTransform, (RectTransform)_view.transform);
+                var frame = AnomalyUi.LocalRect(FindImage("BoardFrame").rectTransform, (RectTransform)_view.transform);
+                var padding = frame.size - picture.size;
+                Assert.That(picture.width / picture.height, Is.EqualTo((float)size.x / size.y).Within(0.01f), size.ToString());
+                Assert.That(picture.xMin - frame.xMin, Is.EqualTo(30f).Within(0.5f), size.ToString());
+                Assert.That(frame.xMax - picture.xMax, Is.EqualTo(32f).Within(0.5f), size.ToString());
+                Assert.That(picture.yMin - frame.yMin, Is.EqualTo(39f).Within(0.5f), size.ToString());
+                Assert.That(frame.yMax - picture.yMax, Is.EqualTo(24f).Within(0.5f), size.ToString());
+                Assert.That(padding.x, Is.EqualTo(62f).Within(1f), size.ToString());
+                Assert.That(FindImage("BoardFrame").transform.GetSiblingIndex(), Is.GreaterThan(FindImage("Original").transform.parent.GetSiblingIndex()), "Frame must draw above the picture.");
+                Object.DestroyImmediate(sprite);
+                Object.DestroyImmediate(texture);
+            }
+        }
+
         /// <summary>Connects the same Ready contract as the production controller without application services.</summary>
         private void CreateAttempt()
         {
             _search = new AnomalySearchSystem(_data, 1);
-            _view = AnomalySearchView.Create(_canvas, _data, _search);
+            _view = AnomalySearchView.Create(_canvas,
+                UnityEditor.AssetDatabase.LoadAssetAtPath<AnomalySearchView>("Assets/Game/Anomalies/AnomalySearch.prefab"), _data, _search);
             _view.Ready += _search.Start;
         }
 

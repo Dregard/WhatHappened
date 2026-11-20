@@ -4,29 +4,30 @@ using UnityEngine.UI;
 
 namespace Game.Gameplay.Chapters
 {
-    /// <summary>One evidence circle: a dashed question mark until found, then a gold ring with its icon on a cream disc.</summary>
-    public sealed class ChapterEvidenceSlotView
+    /// <summary>One evidence circle of the ChapterEvidenceSlot prefab: a dashed question mark until found, then a gold ring with its icon on a cream disc.</summary>
+    public sealed class ChapterEvidenceSlotView : MonoBehaviour
     {
-        private readonly Image _empty;
-        private readonly Image _discBacking;
-        private readonly Image _disc;
-        private readonly Image _ring;
-        private readonly Image _icon;
-        public RectTransform Rect { get; private set; }
+        [SerializeField] private Image _empty;
+        [SerializeField] private Image _discBacking;
+        [SerializeField] private Image _disc;
+        [SerializeField] private Image _ring;
+        [SerializeField] private Image _icon;
 
-        /// <summary>Creates a slot centered at a mockup point; an icon marks it found immediately.</summary>
-        public ChapterEvidenceSlotView(UiThemeData theme, Transform parent, string name, float centerX, float centerY, float diameter, Sprite icon)
+        public RectTransform Rect { get { return (RectTransform)transform; } }
+
+        /// <summary>Centers the slot at a mockup point (1080 wide, referenceHeight tall); an icon marks it found immediately.</summary>
+        public void Place(float centerX, float centerY, float diameter, Sprite icon, float referenceHeight = UiKit.ReferenceHeight)
         {
-            var root = UiKit.Group(name, parent, centerX - diameter * 0.5f, centerY - diameter * 0.5f, centerX + diameter * 0.5f, centerY + diameter * 0.5f);
-            Rect = root;
-            _empty = UiKit.Image("Empty", root, theme.EvidenceEmpty);
-            UiKit.FillLabel(theme, _empty.transform, "?", UiKit.TextStyleAlias.Light, 160, new Vector2(0.2f, 0.12f), new Vector2(0.8f, 0.88f));
-            // The cream disc art is slightly translucent; a second copy makes it opaque like the mockup.
-            _discBacking = InsetImage("DiscBacking", root, theme.EvidenceDisc, 0.06f);
-            _disc = InsetImage("Disc", root, theme.EvidenceDisc, 0.06f);
-            _icon = InsetImage("Icon", root, null, 0.2f);
-            _ring = UiKit.Image("Ring", root, theme.EvidenceRing);
+            UiKit.PlaceIn(Rect, UiKit.ReferenceWidth, referenceHeight, centerX - diameter * 0.5f, centerY - diameter * 0.5f, centerX + diameter * 0.5f, centerY + diameter * 0.5f);
             SetFound(icon);
+        }
+
+        /// <summary>Sets the slot's normalized rectangle directly, with no offsets.</summary>
+        public void SetAnchors(Vector2 min, Vector2 max)
+        {
+            Rect.anchorMin = min;
+            Rect.anchorMax = max;
+            Rect.offsetMin = Rect.offsetMax = Vector2.zero;
         }
 
         /// <summary>Shows the found look when an icon is supplied, otherwise the unfound look.</summary>
@@ -40,16 +41,6 @@ namespace Game.Gameplay.Chapters
             _icon.gameObject.SetActive(isFound);
             _icon.sprite = icon;
             _icon.enabled = isFound;
-        }
-
-        /// <summary>Creates an image inset from every edge of its parent by a normalized margin.</summary>
-        private static Image InsetImage(string name, Transform parent, Sprite sprite, float margin)
-        {
-            var image = UiKit.Image(name, parent, sprite);
-            image.rectTransform.anchorMin = new Vector2(margin, margin);
-            image.rectTransform.anchorMax = new Vector2(1 - margin, 1 - margin);
-            image.rectTransform.offsetMin = image.rectTransform.offsetMax = Vector2.zero;
-            return image;
         }
     }
 }

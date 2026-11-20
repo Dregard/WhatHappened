@@ -127,7 +127,8 @@ namespace Game.Anomalies.Tests
                 Assert.That(Call(progress, "TryClaimChapterReward"), Is.False);
                 Assert.That(Call(progress, "StartNextChapter"), Is.False);
 
-                var hud = root.AddComponent(Find("Game.Gameplay.Chapters.ChapterHudView"));
+                var hudObject = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Game/Gameplay/Chapters/ChapterHud.prefab"), root.transform, false);
+                var hud = hudObject.GetComponent(Find("Game.Gameplay.Chapters.ChapterHudView"));
                 var investigationClicks = 0;
                 Call(hud, "Initialize", "Laboratory", (Action)(() => investigationClicks++));
                 Call(hud, "Show", 0, 2, true);
@@ -172,15 +173,12 @@ namespace Game.Anomalies.Tests
                 Call(progress, "AcknowledgeLevelVictory");
                 Assert.That(Get(progress, "ActualLevelIndex"), Is.EqualTo(0));
 
-                windowRoot = new GameObject("InvestigationFixture", typeof(RectTransform));
-                windowRoot.transform.SetParent(root.transform, false);
-                var window = windowRoot.AddComponent(Find("Game.Gameplay.Chapters.ChapterWindow"));
-                var windowController = windowRoot.AddComponent(Find("Game.Gameplay.Chapters.ChapterWindowController"));
+                windowRoot = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Game/Gameplay/Chapters/Windows/Investigation/ChapterInvestigationWindow.prefab"), root.transform, false);
+                var window = windowRoot.GetComponent(Find("Game.Gameplay.Chapters.ChapterInvestigationWindow"));
+                var windowController = windowRoot.GetComponent(Find("Game.UI.Windows.Controllers.WindowController"));
                 Assert.That(windowRoot.GetComponent<Canvas>(), Is.Not.Null);
                 Assert.That(Get(windowController, "CanCloseByReturn"), Is.False);
-                var model = Activator.CreateInstance(Find("Game.Gameplay.Chapters.ChapterWindowModel"));
-                Set(model, "PresentationData", data);
-                Set(model, "Mode", Enum.ToObject(Find("Game.Gameplay.Chapters.ChapterWindowModeAlias"), 1));
+                var model = Activator.CreateInstance(Find("Game.Gameplay.Chapters.ChapterInvestigationWindowModel"));
                 Set(model, "CluesArray", new[] { sprite, null });
                 var closeCount = 0;
                 Set(model, "CloseAction", (Action)(() => closeCount++));

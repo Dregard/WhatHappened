@@ -15,6 +15,7 @@ namespace Game.Anomalies
         public event Action Changed;
         public int PhotoUses { get; private set; }
         public bool IsPhotoOpen { get; private set; }
+        public AnomalyPhotoPhase PhotoPhase { get; private set; }
         public float PhotoRemaining { get { return Mathf.Max(0, _photoRemaining); } }
         public AnomalyData HintTarget { get; private set; }
         public AnomalyHintData HintData { get; private set; }
@@ -58,9 +59,36 @@ namespace Game.Anomalies
                 return false;
             PhotoUses++;
             IsPhotoOpen = true;
+            PhotoPhase = AnomalyPhotoPhase.Opening;
             _photoRemaining = PhotoDuration;
             Changed?.Invoke();
             return true;
+        }
+
+        /// <summary>Called by the view when the photo has arrived at the center; only then does the five-second countdown start.</summary>
+        public void BeginPhotoShowing()
+        {
+            if (PhotoPhase != AnomalyPhotoPhase.Opening)
+                return;
+            PhotoPhase = AnomalyPhotoPhase.Showing;
+            Changed?.Invoke();
+        }
+
+        /// <summary>Starts the return flight on a tap; accepted only while the photo is fully open and counting.</summary>
+        public bool TryClosePhoto()
+        {
+            if (_isDisposed || _search.IsPaused || PhotoPhase != AnomalyPhotoPhase.Showing)
+                return false;
+            BeginClosing();
+            return true;
+        }
+
+        /// <summary>Called by the view when the photo is back in the thumbnail; releases the board and the level clock.</summary>
+        public void CompletePhotoClose()
+        {
+            if (PhotoPhase != AnomalyPhotoPhase.Closing)
+                return;
+            EndPhoto();
         }
 
         /// <summary>Advances effect clocks in active game time; external gameplay pauses preserve the remaining photo/hint time.</summary>
@@ -70,12 +98,11 @@ namespace Game.Anomalies
                 return;
             if (IsPhotoOpen)
             {
+                if (PhotoPhase != AnomalyPhotoPhase.Showing)
+                    return;
                 _photoRemaining -= deltaTime;
                 if (_photoRemaining <= 0)
-                {
-                    IsPhotoOpen = false;
-                    Changed?.Invoke();
-                }
+                    BeginClosing();
                 return;
             }
             if (HintTarget == null)
@@ -107,10 +134,23 @@ namespace Game.Anomalies
             if (HintTarget != null && (_search.IsFound(HintTarget.Id) || _hintStage != _search.StageIndex || _search.IsCompleted))
                 ClearHint();
             if (_search.IsCompleted && IsPhotoOpen)
-            {
-                IsPhotoOpen = false;
-                Changed?.Invoke();
-            }
+                EndPhoto();
+        }
+
+        /// <summary>Keeps the photo open for the return flight; the view finishes it through <see cref="CompletePhotoClose"/>.</summary>
+        private void BeginClosing()
+        {
+            _photoRemaining = 0;
+            PhotoPhase = AnomalyPhotoPhase.Closing;
+            Changed?.Invoke();
+        }
+
+        /// <summary>Closes the photo synchronously and notifies presentation and the level clock.</summary>
+        private void EndPhoto()
+        {
+            IsPhotoOpen = false;
+            PhotoPhase = AnomalyPhotoPhase.None;
+            Changed?.Invoke();
         }
 
         /// <summary>Clears the target before notifying presentation; no stale pointer remains after an accepted finding.</summary>
@@ -129,6 +169,7 @@ namespace Game.Anomalies
             _search.Changed -= Refresh;
             HintTarget = null;
             IsPhotoOpen = false;
+            PhotoPhase = AnomalyPhotoPhase.None;
             Changed?.Invoke();
         }
     }

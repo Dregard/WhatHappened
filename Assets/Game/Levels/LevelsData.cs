@@ -18,6 +18,8 @@ namespace Game.Levels
         public float CulpritRevealDuration = 2.5f;
         [Min(0f), Tooltip("Seconds of the sunburst rotation per full turn behind celebrated items. Zero keeps it still.")]
         public float SunburstTurnSeconds = 18f;
+        [Min(0f), Tooltip("Seconds each stage of the result window fades in or out through alpha when moving between evidence, rewards and the culprit sequence.")]
+        public float ResultFadeSeconds = 0.35f;
         public PriceData RevivePrice;
         public float ReviveTimer;
         public LevelReference[] Levels;

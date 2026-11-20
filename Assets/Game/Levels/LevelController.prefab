@@ -536,6 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.LevelController
   _levelCamera: {fileID: 6992901839543317213}
   _canvas: {fileID: 5136140378876608607}
+  _searchViewPrefab: {fileID: 4573440662614505382, guid: 8fdd758dc45769e4a996ad3aba6a07d7, type: 3}
   _vignetteController: {fileID: 3671486425650587495}
   _timeoutWarningTimes:
   - 30

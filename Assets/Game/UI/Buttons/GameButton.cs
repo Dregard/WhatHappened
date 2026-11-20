@@ -46,15 +46,16 @@ namespace Game.UI.Buttons
             if (UnityEngine.Input.touchCount > 1)
                 return;
 
-            _signalBus.Fire<Signals.ButtonClickedSignal>(new Signals.ButtonClickedSignal
+            // Not injected when the prefab is instantiated outside the DI container (e.g. isolated view tests): the click still reaches subscribers.
+            _signalBus?.Fire<Signals.ButtonClickedSignal>(new Signals.ButtonClickedSignal
             {
                 IsInteractable = IsInteractable
             });
-            
+
             if (IsInteractable == false)
                 return;
 
-            _audioSystem.PlaySfx("ButtonClick");
+            _audioSystem?.PlaySfx("ButtonClick");
             
             ClickEvent?.Invoke();
         }

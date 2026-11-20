@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Boosters.FreezeTimerBoosterData
   Name: Photo
   Description: Peek at the original once more!
-  Icon: {fileID: 21300000, guid: e6dae31f9acee124fa93b30e022c9018, type: 3}
+  Icon: {fileID: 21300000, guid: d9b93eafec0375d4c9e88bb257a5d77e, type: 3}
   InitialValue: 2
   Price: {fileID: 11400000, guid: 04a8f96f7cf205a429bde6fd55ab95e0, type: 2}
   Reward: {fileID: 11400000, guid: 60fcfd6a89f23d643a030dc1605891a5, type: 2}
-  OpenLevel: 11
+  OpenLevel: 0
+  PhotosPerLevel: 3

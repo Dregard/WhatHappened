@@ -230,7 +230,8 @@ namespace Game.Initialization
         /// <summary>Registers the existing window infrastructure and the passive download-retry model processor.</summary>
         private void InstallWindows()
         {
-            Container.Bind<IWindowModelProcessor>().To<ChapterWindowModelProcessor>().AsSingle();
+            Container.Bind<IWindowModelProcessor>().To<ChapterWindowModelProcessor<ChapterInvestigationWindowModel>>().AsSingle();
+            Container.Bind<IWindowModelProcessor>().To<ChapterWindowModelProcessor<ChapterResultWindowModel>>().AsSingle();
             Container.Bind<IWindowModelProcessor>()
                 .To<DownloadWaitWindowModelProcessor>()
                 .AsSingle();

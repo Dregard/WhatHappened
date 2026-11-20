@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Game.Anomalies;
 using Game.Boosters;
@@ -17,7 +18,7 @@ using Zenject;
 
 namespace Game.Gameplay.Chapters
 {
-    public sealed class ChapterSystem : IInitializable, IDisposable
+    public sealed class ChapterSystem : IDisposable
     {
         private readonly GameplayProgressController _progress;
         private readonly ProfileSystem _profiles;
@@ -26,9 +27,10 @@ namespace Game.Gameplay.Chapters
         private readonly HudView _hud;
         private readonly List<AsyncOperationHandle<LevelData>> _clueHandlesList = new();
         private ChapterHudView _view;
-        private GameObject _templates;
         private LevelsData _data;
         private Sprite[] _cluesArray;
+        private Func<UniTask> _closeCurrentWindow;
+        private CancellationTokenSource _flowCancellation;
         private int _generation;
         private bool _isOpening;
         private bool _isPresenting;
@@ -44,21 +46,6 @@ namespace Game.Gameplay.Chapters
             _hud = hud;
         }
 
-        /// <summary>Registers a hierarchy-owned template in the existing window system without changing scenes or authored prefabs.</summary>
-        public void Initialize()
-        {
-            _templates = new GameObject("ChapterTemplates");
-            _templates.transform.SetParent(_windows.transform, false);
-            _templates.SetActive(false);
-            var template = new GameObject("ChapterWindow", typeof(RectTransform));
-            template.layer = _windows.gameObject.layer;
-            template.transform.SetParent(_templates.transform, false);
-            var window = template.AddComponent<ChapterWindow>();
-            template.AddComponent<ChapterWindowController>();
-            template.AddComponent<GraphicRaycaster>();
-            _windows.RegisterTemplate(window);
-        }
-
         /// <summary>Creates a fresh level-owned counter and releases previous clue asset consumers before their handles.</summary>
         public void Prepare(LevelsData data)
         {
@@ -66,11 +53,7 @@ namespace Game.Gameplay.Chapters
             _data = data;
             if (!_progress.UsesChapters)
                 return;
-            var root = new GameObject("ChapterHud", typeof(RectTransform));
-            root.layer = _hud.HudCanvas.gameObject.layer;
-            root.transform.SetParent(_hud.HudCanvas.transform, false);
-            AnomalyUi.Bounds((RectTransform)root.transform, Vector2.zero, Vector2.one);
-            _view = root.AddComponent<ChapterHudView>();
+            _view = _hud.ChapterHud;
             _view.Initialize(_progress.CurrentChapter.Title, () => ShowInvestigation().Forget());
             Refresh();
         }
@@ -82,10 +65,12 @@ namespace Game.Gameplay.Chapters
             _isOpening = false;
             _isPresenting = false;
             _isCompletingLevel = false;
+            _flowCancellation?.Cancel();
+            _flowCancellation?.Dispose();
+            _flowCancellation = null;
             if (_view != null)
             {
                 _view.gameObject.SetActive(false);
-                UnityEngine.Object.Destroy(_view.gameObject);
                 _view = null;
             }
             _cluesArray = null;
@@ -112,26 +97,94 @@ namespace Game.Gameplay.Chapters
             await LoadClues();
             if (generation != _generation)
                 throw new OperationCanceledException();
-            var total = _progress.CurrentChapter.LevelsArray.Length;
-            var model = MakeModel(ChapterWindowModeAlias.EvidenceFound, continueLevel, continueChapter);
-            model.NewClue = clue;
-            model.NewClueName = clueName;
-            model.NewClueIndex = _progress.ClueCount;
-            model.IsFinal = _progress.ClueCount + 1 == total;
-            model.CommitClue = CommitClue;
-            await _windows.Open<ChapterWindow>(new ChapterWindowModelParams { Model = model });
-            _isPresenting = false;
+            RunResult(true, clue, clueName, continueLevel, continueChapter).Forget();
         }
 
         /// <summary>Resumes the screen matching saved progress: the level reward when only that was pending, or the culprit sequence when the chapter is complete.</summary>
         public async UniTask Resume(Action continueLevel, Action continueChapter)
         {
             await LoadClues();
-            var isChapter = _progress.IsChapterComplete;
-            var model = MakeModel(isChapter ? ChapterWindowModeAlias.AllEvidence : ChapterWindowModeAlias.LevelReward, continueLevel, continueChapter);
-            model.IsFinal = isChapter;
-            await _windows.Open<ChapterWindow>(new ChapterWindowModelParams { Model = model });
+            RunResult(false, null, null, continueLevel, continueChapter).Forget();
         }
+
+        /// <summary>Closes the chapter result window that is currently open, if any.</summary>
+        public async UniTask CloseWindows()
+        {
+            var close = _closeCurrentWindow;
+            _closeCurrentWindow = null;
+            if (close != null)
+                await close();
+        }
+
+        #region Result sequence
+
+        /// <summary>Opens the single result window and waits for its sequence: evidence found -> level reward, or (final level) evidence found -> all evidences -> culprit reveal -> culprit scene -> chapter reward. The window stays open throughout; stages swap inside it.</summary>
+        private async UniTaskVoid RunResult(bool isEvidenceFound, Sprite clue, string clueName, Action continueLevel, Action continueChapter)
+        {
+            var generation = _generation;
+            _flowCancellation = new CancellationTokenSource();
+            var token = _flowCancellation.Token;
+            try
+            {
+                var chapter = _progress.CurrentChapter;
+                var isFinal = isEvidenceFound ? _progress.ClueCount + 1 == chapter.LevelsArray.Length : _progress.IsChapterComplete;
+                var index = _progress.ClueCount;
+                var done = new UniTaskCompletionSource();
+                var model = new ChapterResultWindowModel
+                {
+                    HasEvidence = isEvidenceFound,
+                    NewClueIndex = index,
+                    LastFoundIndex = Mathf.Max(0, isEvidenceFound ? index : index - 1),
+                    NewClue = clue,
+                    NewClueName = clueName,
+                    IsFinal = isFinal,
+                    GetClues = Snapshot,
+                    ClaimLevelReward = ClaimLevelReward,
+                    ClaimChapterReward = ClaimChapterReward,
+                    CulpritPortrait = chapter.CulpritPortrait,
+                    CulpritCaption = chapter.CulpritCaption,
+                    CulpritSceneImage = chapter.CulpritSceneImage,
+                    CulpritSceneCaption = chapter.CulpritSceneCaption,
+                    ChapterRewardHeading = "Chapter complete!",
+                    FlightDuration = _data.EvidenceFlightDuration,
+                    ConvergenceDuration = _data.AllEvidenceDuration,
+                    RevealDuration = _data.CulpritRevealDuration,
+                    SunburstTurnSeconds = _data.SunburstTurnSeconds,
+                    FadeSeconds = _data.ResultFadeSeconds,
+                    ContinueAction = () => done.TrySetResult(),
+                };
+                if (isFinal)
+                    model.ChapterRewardsList = Describe(chapter.RewardsList, 3);
+                else
+                    model.LevelRewardsList = Describe(chapter.LevelRewardsList, 1);
+                model.CommitClue = () =>
+                {
+                    _cluesArray[index] = clue;
+                    return CommitClue();
+                };
+                await _windows.Open<ChapterResultWindow>(new ChapterWindowModelParams<ChapterResultWindowModel> { Model = model });
+                _closeCurrentWindow = () => _windows.Close<ChapterResultWindow>();
+                _isPresenting = false;
+                await done.Task.AttachExternalCancellation(token);
+                if (generation == _generation)
+                    (isFinal || _progress.IsChapterComplete ? continueChapter : continueLevel)?.Invoke();
+            }
+            catch (OperationCanceledException)
+            {
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception);
+            }
+        }
+
+        /// <summary>Builds a snapshot with exactly one slot per configured level, exposing found sprites only.</summary>
+        private Sprite[] Snapshot()
+        {
+            return _cluesArray.Select((sprite, index) => index < _progress.ClueCount ? sprite : null).ToArray();
+        }
+
+        #endregion
 
         /// <summary>Commits the clue to progression at slot arrival and persists the completed level.</summary>
         private UniTask CommitClue()
@@ -181,9 +234,12 @@ namespace Game.Gameplay.Chapters
                 await LoadClues();
                 if (generation != _generation || _isCompletingLevel)
                     return;
-                var model = MakeModel(ChapterWindowModeAlias.Investigation, null, null);
-                model.CloseAction = () => _windows.Close<ChapterWindow>().Forget();
-                await _windows.Open<ChapterWindow>(new ChapterWindowModelParams { Model = model });
+                var model = new ChapterInvestigationWindowModel
+                {
+                    CluesArray = Snapshot(),
+                    CloseAction = () => _windows.Close<ChapterInvestigationWindow>().Forget(),
+                };
+                await _windows.Open<ChapterInvestigationWindow>(new ChapterWindowModelParams<ChapterInvestigationWindowModel> { Model = model });
             }
             catch (Exception exception)
             {
@@ -194,38 +250,6 @@ namespace Game.Gameplay.Chapters
                 if (generation == _generation)
                     _isOpening = false;
             }
-        }
-
-        /// <summary>Builds a snapshot with exactly one slot per configured level, exposing found sprites only.</summary>
-        private ChapterWindowModel MakeModel(ChapterWindowModeAlias mode, Action continueLevel, Action continueChapter)
-        {
-            var chapter = _progress.CurrentChapter;
-            var model = new ChapterWindowModel
-            {
-                Mode = mode,
-                ChapterTitle = chapter.Title,
-                CluesArray = _cluesArray.Select((sprite, index) => index < _progress.ClueCount ? sprite : null).ToArray(),
-                CulpritPortrait = chapter.CulpritPortrait,
-                CulpritCaption = chapter.CulpritCaption,
-                CulpritSceneImage = chapter.CulpritSceneImage,
-                CulpritSceneCaption = chapter.CulpritSceneCaption,
-                ClaimLevelReward = ClaimLevelReward,
-                ClaimChapterReward = ClaimChapterReward,
-                PresentationData = _data,
-            };
-            model.FinishAction = () => FinishWindow(mode == ChapterWindowModeAlias.AllEvidence || _progress.IsChapterComplete ? continueChapter : continueLevel);
-            if (mode != ChapterWindowModeAlias.Investigation)
-            {
-                model.LevelRewardsList = Describe(chapter.LevelRewardsList, 1);
-                model.ChapterRewardsList = Describe(chapter.RewardsList, 3);
-            }
-            return model;
-        }
-
-        /// <summary>Hands control back to the owner once the screens have claimed and saved everything.</summary>
-        private void FinishWindow(Action next)
-        {
-            next?.Invoke();
         }
 
         /// <summary>Acquires separate Addressables handles for found clue images, retaining them through the current UI lifetime. Stale loads release their own handles.</summary>
@@ -289,8 +313,6 @@ namespace Game.Gameplay.Chapters
         public void Dispose()
         {
             Cancel();
-            if (_templates != null)
-                UnityEngine.Object.Destroy(_templates);
         }
     }
 }

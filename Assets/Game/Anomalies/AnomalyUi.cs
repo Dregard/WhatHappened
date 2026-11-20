@@ -41,12 +41,10 @@ namespace Game.Anomalies
             rect.offsetMin = rect.offsetMax = Vector2.zero;
         }
 
-        /// <summary>Fits a sprite to a container; its children share the exact visible image rectangle.</summary>
-        public static void Fit(Image image)
+        /// <summary>Sets a prefab's fit-in-parent fitter to a sprite's aspect so the image shares the exact visible rectangle with its children.</summary>
+        public static void SetAspect(AspectRatioFitter fitter, Sprite sprite)
         {
-            var fitter = image.gameObject.AddComponent<AspectRatioFitter>();
-            fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
-            fitter.aspectRatio = image.sprite.rect.width / image.sprite.rect.height;
+            fitter.aspectRatio = sprite.rect.width / sprite.rect.height;
         }
 
         /// <summary>Returns an image's rendered rectangle in a shared ancestor's local UI coordinates.</summary>

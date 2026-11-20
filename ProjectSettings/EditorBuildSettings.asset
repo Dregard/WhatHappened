@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/LionStudios/AnimatedLionLogoScene.unity
-    guid: 30a878e4bae2a9d4f80d3d39c6e385fa
+    guid: 848e6a0d83a393e469b434cdaf8c91eb
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02

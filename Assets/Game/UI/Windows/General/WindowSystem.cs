@@ -51,12 +51,6 @@ namespace Game.UI.Windows.General
 
         public int OpenWindowsCount => _currentControllers.Count;
 
-        /// <summary>Registers an owner-created template using the same model processors, sorting and window lifecycle as authored prefabs.</summary>
-        public void RegisterTemplate(WindowBase template)
-        {
-            _windowPrefabsByType.Add(template.GetType(), template);
-        }
-
         private void Awake()
         {
             foreach (var windowPrefab in _windowPrefabs)

@@ -21,6 +21,7 @@ namespace Game.UI.Hud
         private readonly LevelProgressController _levelProgressController;
         
         private HudModel _model;
+        private AnomalyLevelController _tappedLevel;
         
         
         public HudModelProcessor(DiContainer container, WindowSystem windowSystem,
@@ -61,9 +62,25 @@ namespace Game.UI.Hud
             {
                 _model.CurrentLevel = _gameplayProgressController.CurrentLevel;
                 _model.InvokeLevelStarted();
+                BindPhotoTap();
             };
             
             _view.Setup(_model);
+        }
+
+        /// <summary>Makes a tap on the HUD photo behave exactly like pressing the photo booster button.</summary>
+        private void BindPhotoTap()
+        {
+            if (_tappedLevel != null)
+                _tappedLevel.PhotoRequested -= OnPhotoTapped;
+            _tappedLevel = _levelsManager.CurrentLevelController?.AnomalyLevel;
+            if (_tappedLevel != null)
+                _tappedLevel.PhotoRequested += OnPhotoTapped;
+        }
+
+        private void OnPhotoTapped()
+        {
+            UseBooster(BoosterKind.FreezeTimer);
         }
 
         private float GetTime()

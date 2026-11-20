@@ -13,14 +13,16 @@ namespace Game.Levels
         private readonly Action<string> _playSfx;
         private readonly Action<string> _stopSfx;
         private readonly HashSet<string> _sfxIdsSet = new();
+        /// <summary>Raised when the player taps the HUD photo to open the comparison view.</summary>
+        public event Action PhotoRequested;
         public AnomalySearchSystem Search { get; }
         public AnomalyBoosterController Boosters { get { return _view.Boosters; } }
         public Sprite ClueImage { get; }
         public string ClueName { get; }
 
         /// <summary>Owns attempt-local search and its view; completion is forwarded only after all presentation gates.</summary>
-        public AnomalyLevelController(Canvas canvas, AnomalyLevelData data, LevelProgressController progress, Action start,
-            Action<string> playSfx = null, Action<string> stopSfx = null)
+        public AnomalyLevelController(Canvas canvas, AnomalySearchView viewPrefab, AnomalyLevelData data, LevelProgressController progress, Action start,
+            Action<string> playSfx = null, Action<string> stopSfx = null, Action<GameObject> inject = null)
         {
             ClueImage = data.ClueImage;
             ClueName = data.ClueName;
@@ -32,9 +34,10 @@ namespace Game.Levels
             _stopSfx = stopSfx;
             _progress.Start(1);
             _progress.SetCompletionBlocked(true);
-            _view = AnomalySearchView.Create(canvas, data, Search);
+            _view = AnomalySearchView.Create(canvas, viewPrefab, data, Search, inject);
             _view.Ready += Start;
             _view.SfxRequested += PlaySfx;
+            _view.PhotoRequested += RequestPhoto;
             Search.Completed += Complete;
             foreach (var warning in Search.Warnings)
                 Debug.LogWarning(warning);
@@ -45,6 +48,12 @@ namespace Game.Levels
         {
             _sfxIdsSet.Add(id);
             _playSfx?.Invoke(id);
+        }
+
+        /// <summary>Forwards the HUD photo tap to the economy adapter.</summary>
+        private void RequestPhoto()
+        {
+            PhotoRequested?.Invoke();
         }
 
         /// <summary>Enables the attempt clock and search together after Ready.</summary>
@@ -69,6 +78,7 @@ namespace Game.Levels
             {
                 _view.Ready -= Start;
                 _view.SfxRequested -= PlaySfx;
+                _view.PhotoRequested -= RequestPhoto;
                 _view.gameObject.SetActive(false);
                 UnityEngine.Object.Destroy(_view.gameObject);
             }

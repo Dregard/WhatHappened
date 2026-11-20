@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.Camera;
@@ -14,6 +15,7 @@ namespace Game.Levels
         public AnomalyLevelController AnomalyLevel { get; private set; }
         [SerializeField] private UnityEngine.Camera _levelCamera;
         [SerializeField] private Canvas _canvas;
+        [SerializeField] private Game.Anomalies.AnomalySearchView _searchViewPrefab;
         [SerializeField] private VignetteController _vignetteController;
         [SerializeField] private List<float> _timeoutWarningTimes = new() { 30f, 20f, 10f };
         public LevelAttemptTimeModel AttemptTime { get; } = new();
@@ -32,6 +34,7 @@ namespace Game.Levels
         public LevelProgressController ProgressController => _progressController;
         public UnityEngine.Camera LevelCamera => _levelCamera;
         [Inject] private AudioSystem _audioSystem;
+        [Inject] private DiContainer _container;
         [InjectOptional] private HudView _hudView;
         private float _levelTimer;
         private int _currentWarningIndex = -1;
@@ -111,8 +114,8 @@ namespace Game.Levels
             HasTimer = _levelTimer > 0;
             _isTimerFrozen = false;
             ResetWarningState();
-            AnomalyLevel = new AnomalyLevelController(_hudView != null ? _hudView.HudCanvas : _canvas, data.SearchData, progress, () => _isStarted = true,
-                id => _audioSystem?.PlaySfx(id), id => _audioSystem?.StopSfx(id));
+            AnomalyLevel = new AnomalyLevelController(_hudView != null ? _hudView.HudCanvas : _canvas, _searchViewPrefab, data.SearchData, progress, () => _isStarted = true,
+                id => _audioSystem?.PlaySfx(id), id => _audioSystem?.StopSfx(id), _container != null ? _container.InjectGameObject : (Action<GameObject>)null);
             return UniTask.CompletedTask;
         }
 

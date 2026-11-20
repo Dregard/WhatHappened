@@ -269,6 +269,8 @@ MonoBehaviour:
   - {fileID: 5045938884329329266, guid: c736f351795305144bd038b533df4200, type: 3}
   - {fileID: 2324919031045228537, guid: eaa393ab55963c6418ec6beb70ac8eb6, type: 3}
   - {fileID: 3110100086840230766, guid: d4111041cf7e93c40b4d56226e3ec6c6, type: 3}
+  - {fileID: 7730827852611317171, guid: c1fbf556d6c812b47b7c492d073b50f0, type: 3}
+  - {fileID: 370683067410264310, guid: db9b57abbe1dd32488058ab0a1ca5db5, type: 3}
   _canvas: {fileID: 1262169866148157522}
   _backgroundImage: {fileID: 6535149913299474515}
   _showDuration: 0.5

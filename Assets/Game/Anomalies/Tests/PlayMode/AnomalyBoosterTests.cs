@@ -50,6 +50,7 @@ namespace Game.Anomalies.Tests
             Set(_levelData, "LevelTime", 60);
             _data = new AnomalyLevelData { MainImage = _sprite, FindingDuration = 0, TransitionDuration = 0 };
             _data.Presentation.PhotoDuration = 0;
+            _data.Presentation.BoosterPhotoFlightDuration = _data.Presentation.BoosterPhotoLabelsFadeDuration = 0;
             _data.Presentation.FadeDuration = _data.Presentation.FlightDuration = _data.Presentation.StarsDuration = 0;
             _data.Presentation.BlackoutDuration = 0;
             _data.AnomaliesList.Add(new AnomalyData { Id = "a", Image = _sprite, Bounds = new Rect(0.1f, 0.1f, 0.2f, 0.2f) });
@@ -117,7 +118,7 @@ namespace Game.Anomalies.Tests
             Assert.That(Count(_photoKind), Is.EqualTo(4));
             Assert.That(Photo().activeSelf, Is.True);
             Assert.That(Photo().GetComponent<Image>().raycastTarget, Is.True);
-            Assert.That(Photo().transform.Find("Original").GetComponent<Image>().sprite, Is.SameAs(_sprite));
+            Assert.That(Photo().transform.Find("PhotoArea/Original").GetComponent<Image>().sprite, Is.SameAs(_sprite));
             var timer = (float)Get(_level, "TimerValue");
             yield return new WaitForSeconds(0.1f);
             Assert.That((float)Get(_level, "TimerValue"), Is.EqualTo(timer));
@@ -158,6 +159,44 @@ namespace Game.Anomalies.Tests
             Assert.That(Count(_photoKind), Is.EqualTo(1));
         }
 
+        /// <summary>Checks the photo flight phases: countdown only after arrival, taps accepted only while open, board stays blocked until the return ends.</summary>
+        [UnityTest]
+        public IEnumerator PhotoFlightPhasesGateCountdownAndTaps()
+        {
+            _data.Presentation.BoosterPhotoFlightDuration = 0.3f;
+            _data.Presentation.BoosterPhotoLabelsFadeDuration = 0.1f;
+            yield return StartAttempt();
+            var boosters = _view.Boosters;
+            var view = _view.GetComponent<AnomalyBoosterView>();
+            var polaroid = _view.transform.Find("Polaroid").gameObject;
+            Assert.That(Use(_photoKind), Is.True);
+            Assert.That(boosters.PhotoPhase, Is.EqualTo(AnomalyPhotoPhase.Opening));
+            Assert.That(polaroid.activeSelf, Is.False, "The photo leaves its place in the thumbnail together with its frame.");
+            Assert.That(Photo().transform.Find("BoosterPhotoFlight"), Is.Not.Null, "The HUD frame itself flies, not a substitute.");
+            view.OnPointerClick(null);
+            boosters.Tick(2);
+            Assert.That(boosters.PhotoPhase, Is.EqualTo(AnomalyPhotoPhase.Opening), "Taps during the arrival are ignored.");
+            Assert.That(boosters.PhotoRemaining, Is.EqualTo(AnomalyBoosterController.PhotoDuration), "No countdown before arrival.");
+            var deadline = Time.realtimeSinceStartup + 3;
+            while (boosters.PhotoPhase == AnomalyPhotoPhase.Opening && Time.realtimeSinceStartup < deadline)
+                yield return null;
+            Assert.That(boosters.PhotoPhase, Is.EqualTo(AnomalyPhotoPhase.Showing));
+            Assert.That(Photo().transform.Find("BoosterPhotoFlight"), Is.Not.Null);
+            view.OnPointerClick(null);
+            Assert.That(boosters.PhotoPhase, Is.EqualTo(AnomalyPhotoPhase.Closing));
+            Assert.That(boosters.IsPhotoOpen, Is.True, "The board stays blocked during the return flight.");
+            view.OnPointerClick(null);
+            Assert.That(boosters.PhotoPhase, Is.EqualTo(AnomalyPhotoPhase.Closing));
+            deadline = Time.realtimeSinceStartup + 3;
+            while (boosters.IsPhotoOpen && Time.realtimeSinceStartup < deadline)
+                yield return null;
+            Assert.That(boosters.IsPhotoOpen, Is.False);
+            Assert.That(Photo().activeSelf, Is.False);
+            Assert.That(polaroid.activeSelf, Is.True, "The thumbnail frame returns exactly when the photo lands.");
+            yield return null;
+            Assert.That(Photo().transform.Find("BoosterPhotoFlight"), Is.Null, "No flight overlay remains.");
+        }
+
         /// <summary>Checks current unfound targeting, pulse, target cleanup, empty-stage stock preservation and passive thumbnail input.</summary>
         [UnityTest]
         public IEnumerator HintTargetAnimationAndPassiveThumbnail()
@@ -194,12 +233,14 @@ namespace Game.Anomalies.Tests
             Assert.That(_search.StageIndex, Is.EqualTo(1));
             Assert.That(Use(_hintKind), Is.True);
             Assert.That(_view.Boosters.HintTarget.Id, Is.EqualTo("c"));
-            var thumbnail = _view.transform.Find("ThumbnailArea/OriginalThumbnail").GetComponent<Image>();
-            Assert.That(thumbnail.raycastTarget, Is.False);
-            Assert.That(thumbnail.GetComponent<Button>(), Is.Null);
+            var thumbnail = _view.GetComponentsInChildren<Image>(true).First(image => image.name == "OriginalThumbnail");
+            Assert.That(thumbnail.raycastTarget, Is.True);
+            var requests = 0;
+            _view.PhotoRequested += () => requests++;
             _view.OnPointerClick(new PointerEventData(_eventRoot.GetComponent<EventSystem>())
                 { pointerCurrentRaycast = new RaycastResult { gameObject = thumbnail.gameObject } });
-            Assert.That(_view.Boosters.IsPhotoOpen, Is.False);
+            Assert.That(requests, Is.EqualTo(1), "A tap on the HUD photo requests the photo booster.");
+            Assert.That(_view.Boosters.IsPhotoOpen, Is.False, "Spending stays with the economy, not the view.");
             Assert.That(Count(_photoKind), Is.EqualTo(5));
             var old = _view.Boosters;
             Call(_level, "ClearLevel");

@@ -8,165 +8,87 @@ using UnityEngine.UI;
 
 namespace Game.Anomalies
 {
+    /// <summary>Search HUD of the AnomalySearch prefab: board, original thumbnail, task/narrative plates, slots and the start prompt. Code fills it with level data and builds only the per-stage images and slots from prefab templates.</summary>
     public sealed class AnomalySearchView : MonoBehaviour, IPointerClickHandler
     {
-        // Mockup tilt of the polaroid (clockwise) and of the ORIGINAL tape over the board, in degrees.
-        private const float PolaroidTilt = 4.6f;
-        private const float BoardTapeTilt = 3f;
         public event Action Ready;
         public event Action<string> SfxRequested;
+        /// <summary>Raised when the HUD photo is tapped; the economy decides whether the comparison booster may be spent.</summary>
+        public event Action PhotoRequested;
+
+        [SerializeField] private Canvas _boardCanvas;
+        [SerializeField] private Image _board;
+        [SerializeField] private AspectRatioFitter _boardFitter;
+        [SerializeField] private AnomalyBoardFrame _boardFrame;
+        [SerializeField] private RectTransform _stageRoot;
+        [SerializeField] private RectTransform _slotsRoot;
+        [SerializeField] private GameObject _polaroid;
+        [SerializeField] private Image _thumbnail;
+        [SerializeField] private AspectRatioFitter _thumbnailFitter;
+        [SerializeField] private TMP_Text _status;
+        [SerializeField] private GameObject _taskPlate;
+        [SerializeField] private TMP_Text _taskLabel;
+        [SerializeField] private GameObject _narrativePlate;
+        [SerializeField] private TMP_Text _narrativeLabel;
+        [SerializeField] private GameObject _originalTape;
+        [SerializeField] private Button _readyButton; // Root of the project Button prefab; this assembly cannot reference its GameButton, which adds click SFX and signals on the same object.
+        [SerializeField] private AnomalyFindingEffects _effects;
+        [SerializeField] private Image _veil;
+        [SerializeField] private AnomalyBoosterView _boosterView;
+        [SerializeField] private Image _stageImageTemplate;
+        [SerializeField] private Image _slotTemplate;
+
+        /// <summary>Sprite pixels by which the photo extends beneath the frame body past the slice border.</summary>
+        private const float FrameBleedPixels = 14f;
+
         public AnomalyBoosterController Boosters { get; private set; }
         private AnomalySearchSystem _search;
         private AnomalyLevelData _data;
-        private UiThemeData _theme;
         private RectTransform _picture;
-        private RectTransform _stageRoot;
-        private RectTransform _slotsRoot;
-        private Image _thumbnail;
-        private Image _veil;
-        private Image _board;
-        private Button _readyButton;
-        private GameObject _originalTape;
-        private GameObject _polaroid;
-        private TMP_Text _status;
-        private GameObject _taskPlate;
-        private TMP_Text _taskLabel;
-        private GameObject _narrativePlate;
-        private TMP_Text _narrativeLabel;
         private Coroutine _narrativeRoutine;
-        private AnomalyFindingEffects _effects;
         private readonly Dictionary<string, Image> _imagesById = new();
         private readonly Dictionary<string, Image> _slotsById = new();
         private int _displayedStage = -1;
         private int _transitionStage = -1;
         private bool _isPhotographing;
         private bool _isTransitioning;
+        private AnomalyMissLimiter _missLimiter;
+        private GameObject _lockOverlay;
 
-        /// <summary>Creates the owned presentation on the HUD canvas: HUD elements share its level, the board sits just beneath it.</summary>
-        public static AnomalySearchView Create(Canvas canvas, AnomalyLevelData data, AnomalySearchSystem search)
+        /// <summary>Instantiates the prefab on the HUD canvas: HUD elements share its level, the board sits just beneath it.</summary>
+        public static AnomalySearchView Create(Canvas canvas, AnomalySearchView prefab, AnomalyLevelData data, AnomalySearchSystem search, Action<GameObject> inject = null)
         {
-            var root = new GameObject("AnomalySearch", typeof(RectTransform));
-            root.layer = canvas.gameObject.layer;
-            root.transform.SetParent(canvas.transform, false);
-            AnomalyUi.Bounds((RectTransform)root.transform, Vector2.zero, Vector2.one);
-            var view = root.AddComponent<AnomalySearchView>();
+            var view = Instantiate(prefab, canvas.transform, false);
+            view.name = "AnomalySearch";
+            inject?.Invoke(view.gameObject);
             view.Initialize(canvas, data, search);
             return view;
         }
 
-        /// <summary>Builds the themed board, original thumbnail, task/narrative plates and slots; tapping the start prompt begins the photo sequence.</summary>
+        /// <summary>Fills the prefab's board and thumbnail with the level and starts listening to the search; tapping the start prompt begins the photo sequence.</summary>
         private void Initialize(Canvas hudCanvas, AnomalyLevelData data, AnomalySearchSystem search)
         {
             _data = data;
             _search = search;
-            _theme = UiThemeData.LoadOrDefault();
-            var boardRoot = new GameObject("Board", typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster));
-            boardRoot.layer = gameObject.layer;
-            boardRoot.transform.SetParent(transform, false);
-            AnomalyUi.Bounds((RectTransform)boardRoot.transform, Vector2.zero, Vector2.one);
-            var boardCanvas = boardRoot.GetComponent<Canvas>();
-            boardCanvas.overrideSorting = true;
-            boardCanvas.sortingLayerID = hudCanvas.sortingLayerID;
-            boardCanvas.sortingOrder = hudCanvas.sortingOrder - 1;
-            var background = UiKit.Image("Background", boardRoot.transform, _theme.Background);
-            background.preserveAspect = false;
-            background.color = _theme.Background != null ? Color.white : _theme.VeilColor;
-            background.enabled = true;
-            var frame = UiKit.Image("BoardFrame", boardRoot.transform, _theme.BoardFrame, true);
-            UiKit.PlacePadded(frame.rectTransform, 25, 440, 1055, 1470, UiKit.FramePad);
-            var area = AnomalyUi.Image("BoardArea", boardRoot.transform);
-            area.color = Color.clear;
-            UiKit.Place(area.rectTransform, 45, 460, 1035, 1450);
-            _board = AnomalyUi.Image("Original", area.transform, data.PhotoImage);
-            _board.raycastTarget = true;
-            AnomalyUi.Fit(_board);
+            _boardCanvas.overrideSorting = true;
+            _boardCanvas.sortingLayerID = hudCanvas.sortingLayerID;
+            _boardCanvas.sortingOrder = hudCanvas.sortingOrder - 1;
+            _board.sprite = data.PhotoImage;
+            AnomalyUi.SetAspect(_boardFitter, data.PhotoImage);
+            _boardFrame.Fit();
             _picture = _board.rectTransform;
-            var stage = AnomalyUi.Image("Stage", _picture);
-            stage.color = Color.clear;
-            _stageRoot = stage.rectTransform;
-
-            BuildThumbnail(data);
-            BuildStatus();
-            BuildPlates();
-            var slots = AnomalyUi.Image("Slots", transform);
-            slots.color = Color.clear;
-            _slotsRoot = slots.rectTransform;
-            UiKit.Place(_slotsRoot, 100, 1620, 980, 1735);
-            BuildStartPrompt(boardRoot.transform);
-
-            var effectRoot = AnomalyUi.Image("Effects", transform);
-            effectRoot.color = Color.clear;
-            _effects = effectRoot.gameObject.AddComponent<AnomalyFindingEffects>();
-            _effects.Initialize(search, data);
-            _veil = AnomalyUi.Image("ShutterAndBlackout", transform);
-            _veil.color = Color.clear;
+            _thumbnail.sprite = data.PhotoImage;
+            AnomalyUi.SetAspect(_thumbnailFitter, data.PhotoImage);
+            _thumbnail.raycastTarget = true;
+            _readyButton.onClick.AddListener(OnReady);
             Boosters = new AnomalyBoosterController(search);
-            gameObject.AddComponent<AnomalyBoosterView>().Initialize(Boosters, search, _picture, data.PhotoImage);
+            _boosterView.Initialize(Boosters, search, _picture, data.PhotoImage, _polaroid, data.Presentation);
+            _effects.Initialize(search, data);
+            var tuning = data.Presentation;
+            _missLimiter = new AnomalyMissLimiter(tuning.MissLockCount, tuning.MissLockWindow, tuning.MissLockDuration);
             _search.Changed += Refresh;
             _search.Found += PresentFinding;
             Refresh();
-        }
-
-        /// <summary>Places the polaroid, its pin and ORIGINAL tape; the photo itself arrives in the thumbnail after Ready.</summary>
-        private void BuildThumbnail(AnomalyLevelData data)
-        {
-            var polaroid = UiKit.Image("Polaroid", transform, _theme.Polaroid);
-            UiKit.Place(polaroid.rectTransform, 724, 43, 1055, 421);
-            polaroid.rectTransform.localRotation = Quaternion.Euler(0, 0, -PolaroidTilt);
-            _polaroid = polaroid.gameObject;
-            var thumbArea = AnomalyUi.Image("ThumbnailArea", polaroid.transform);
-            thumbArea.color = Color.clear;
-            AnomalyUi.Bounds(thumbArea.rectTransform, new Vector2(0.105f, 0.224f), new Vector2(0.894f, 0.922f));
-            _thumbnail = AnomalyUi.Image("OriginalThumbnail", thumbArea.transform, data.PhotoImage);
-            AnomalyUi.Fit(_thumbnail);
-            _thumbnail.enabled = false;
-            var tape = UiKit.Image("OriginalTape", polaroid.transform, _theme.TapeRed);
-            AnomalyUi.Bounds(tape.rectTransform, new Vector2(0.2f, 0.07f), new Vector2(0.88f, 0.2f));
-            UiKit.FillLabel(_theme, tape.transform, "ORIGINAL", UiKit.TextStyleAlias.Light, 32);
-            var pin = UiKit.Image("Pin", polaroid.transform, _theme.PinRed);
-            AnomalyUi.Bounds(pin.rectTransform, new Vector2(0.45f, 0.93f), new Vector2(0.65f, 1.08f));
-            _polaroid.SetActive(false);
-        }
-
-        /// <summary>Creates the stage label beneath the chapter title plate.</summary>
-        private void BuildStatus()
-        {
-            _status = UiKit.Label(_theme, "Status", transform, string.Empty, UiKit.TextStyleAlias.Light, 365, 125, 715, 175, 38);
-        }
-
-        /// <summary>Creates the task plate, the paper narrative plate and the ORIGINAL tape shown over the unphotographed board.</summary>
-        private void BuildPlates()
-        {
-            var task = UiKit.Image("TaskPlate", transform, _theme.PlateTask, true);
-            UiKit.Place(task.rectTransform, 280, 1505, 800, 1582);
-            _taskPlate = task.gameObject;
-            _taskLabel = UiKit.FillLabel(_theme, task.transform, string.Empty, UiKit.TextStyleAlias.Light, 56);
-            var narrative = UiKit.Image("NarrativePlate", transform, _theme.PlateNarrative, true);
-            UiKit.Place(narrative.rectTransform, 140, 1492, 940, 1595);
-            _narrativePlate = narrative.gameObject;
-            _narrativeLabel = UiKit.FillLabel(_theme, narrative.transform, string.Empty, UiKit.TextStyleAlias.Dark, 40);
-            _narrativeLabel.margin = new Vector4(70, 0, 70, 0);
-            _narrativePlate.SetActive(false);
-            var tape = UiKit.Image("BoardTape", transform, _theme.TapeRed);
-            UiKit.Place(tape.rectTransform, 420, 405, 660, 478);
-            tape.rectTransform.localRotation = Quaternion.Euler(0, 0, BoardTapeTilt);
-            UiKit.FillLabel(_theme, tape.transform, "ORIGINAL", UiKit.TextStyleAlias.Light, 40);
-            _originalTape = tape.gameObject;
-        }
-
-        /// <summary>Creates the full-screen tap target with its prompt and pointing finger; it vanishes after the first tap.</summary>
-        private void BuildStartPrompt(Transform boardRoot)
-        {
-            var ready = AnomalyUi.Image("Ready", transform);
-            ready.color = Color.clear;
-            ready.raycastTarget = true;
-            AnomalyUi.Bounds(ready.rectTransform, Vector2.zero, Vector2.one);
-            _readyButton = ready.gameObject.AddComponent<Button>();
-            _readyButton.transition = Selectable.Transition.None;
-            _readyButton.onClick.AddListener(OnReady);
-            UiKit.Label(_theme, "Prompt", ready.transform, "Tap to begin the investigation", UiKit.TextStyleAlias.Light, 200, 1630, 880, 1710, 44);
-            var finger = UiKit.Image("Finger", ready.transform, _theme.FingerIcon);
-            UiKit.Place(finger.rectTransform, 870, 1650, 1030, 1790);
         }
 
         /// <summary>Disables duplicate Ready taps; the gameplay clock starts only after photo presentation finishes.</summary>
@@ -177,43 +99,130 @@ namespace Game.Anomalies
             _isPhotographing = true;
             _readyButton.gameObject.SetActive(false);
             _originalTape.SetActive(false);
-            _polaroid.SetActive(true);
             StartCoroutine(Photograph());
         }
 
-        /// <summary>Flashes the shutter and moves the original into the upper-right comparison thumbnail.</summary>
+        /// <summary>Flashes the shutter and flies the original, already inside its frame, from the board into the upper-right comparison thumbnail.</summary>
         private IEnumerator Photograph()
         {
             RequestSfx(_data.Presentation.PhotoSfx);
-            var photo = AnomalyUi.Image("PhotoFlight", _effects.transform, _data.PhotoImage);
-            // The flying photo covers the board, so the field switches from the original to the search picture unseen.
-            _board.sprite = _data.MainImage;
+            var root = (RectTransform)_effects.transform;
             Canvas.ForceUpdateCanvases();
+            FitFrameToPhoto();
+            var flight = CreateFramedFlight(root, out var photoOffset, out var photoSize);
+            // The flying frame covers the board, so the field and its anomaly layers are prepared unseen and are in place the moment the frame leaves.
+            _board.sprite = _data.MainImage;
+            if (_search.Stages.Count > 0)
+                BuildStage(0, _search.Stages[0]);
+            Canvas.ForceUpdateCanvases();
+            var source = AnomalyUi.LocalRect(_picture, root);
+            var endAngle = Mathf.DeltaAngle(0, flight.localEulerAngles.z);
+            var endCenter = (Vector2)flight.localPosition + (Vector2)(Quaternion.Euler(0, 0, endAngle) * (Vector3)photoOffset);
+            var startScale = source.width / photoSize.x;
             yield return _effects.Animate(_data.Presentation.PhotoDuration, progress =>
             {
-                var root = (RectTransform)_effects.transform;
-                var source = AnomalyUi.LocalRect(_picture, root);
-                var target = AnomalyUi.LocalRect(_thumbnail.rectTransform, root);
                 var fraction = Mathf.SmoothStep(0, 1, progress);
-                var size = Vector2.Lerp(source.size, target.size, fraction);
-                AnomalyUi.Place(photo.rectTransform, new Rect(Vector2.Lerp(source.center, target.center, fraction) - size * 0.5f, size));
+                var scale = Mathf.Lerp(startScale, 1, fraction);
+                var angle = Mathf.Lerp(0, endAngle, fraction);
+                var photoCenter = Vector2.Lerp(source.center, endCenter, fraction);
+                var frameCenter = photoCenter - (Vector2)(Quaternion.Euler(0, 0, angle) * (Vector3)(photoOffset * scale));
+                flight.localPosition = frameCenter;
+                flight.localRotation = Quaternion.Euler(0, 0, angle);
+                flight.localScale = new Vector3(scale, scale, 1);
                 _veil.color = new Color(1, 1, 1, Mathf.Clamp01(1 - progress * 3));
             });
             _thumbnail.enabled = true;
-            Destroy(photo.gameObject);
+            _polaroid.SetActive(true);
+            Destroy(flight.gameObject);
             _veil.color = Color.clear;
             _isPhotographing = false;
             Ready?.Invoke();
             Refresh();
         }
 
-        /// <summary>Accepts only the fitted board's own raycast, excluding UI, letterboxing and presentation-locked taps.</summary>
+        /// <summary>Resizes the frame within its authored slot so its sliced borders keep their proportions and the window has exactly the photo's aspect (no gaps), and moves the frame graphic above the photo so it hides the photo's corners.</summary>
+        private void FitFrameToPhoto()
+        {
+            var root = (RectTransform)_polaroid.transform;
+            var sprite = _polaroid.GetComponent<Image>().sprite;
+            var border = sprite.border;
+            var slot = root.rect.size;
+            var unit = Mathf.Min(slot.x / sprite.rect.width, slot.y / sprite.rect.height);
+            var borders = new Vector2(border.x + border.z, border.y + border.w) * unit;
+            var window = slot - borders;
+            var aspect = _data.PhotoImage.rect.width / _data.PhotoImage.rect.height;
+            var photo = window.x / window.y > aspect ? new Vector2(window.y * aspect, window.y) : new Vector2(window.x, window.x / aspect);
+            var frame = photo + borders;
+            var inset = (slot - frame) * 0.5f;
+            root.offsetMin = inset;
+            root.offsetMax = -inset;
+            var area = (RectTransform)_thumbnailFitter.transform.parent;
+            area.anchorMin = new Vector2(border.x * unit / frame.x, border.y * unit / frame.y);
+            area.anchorMax = new Vector2(1 - border.z * unit / frame.x, 1 - border.w * unit / frame.y);
+            // The sprite's transparent window is wider than its slice border, so the photo bleeds uniformly under the opaque frame body to leave no gap.
+            var bleed = FrameBleedPixels * unit;
+            var grow = Mathf.Max((photo.x + 2 * bleed) / photo.x, (photo.y + 2 * bleed) / photo.y) - 1f;
+            area.offsetMin = -photo * grow * 0.5f;
+            area.offsetMax = photo * grow * 0.5f;
+            var label = _polaroid.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+            {
+                // The caption stays inside the bottom strip, whose thickness is fixed by the border.
+                var caption = (RectTransform)label.transform.parent;
+                var strip = border.y * unit / frame.y;
+                caption.anchorMin = new Vector2(caption.anchorMin.x, strip * 0.3f);
+                caption.anchorMax = new Vector2(caption.anchorMax.x, strip * 0.86f);
+                caption.offsetMin = caption.offsetMax = Vector2.zero;
+            }
+            var overlay = AnomalyUi.Image("Frame", root, sprite);
+            overlay.type = Image.Type.Sliced;
+            overlay.fillCenter = false;
+            overlay.pixelsPerUnitMultiplier = 1f / (overlay.pixelsPerUnit * unit);
+            overlay.transform.SetSiblingIndex(1);
+            _polaroid.GetComponent<Image>().enabled = false;
+        }
+
+        /// <summary>Clones the final frame with the photo inside and places it exactly at the final frame's position, size and angle; returns the photo's centre offset and fitted size in the frame's own space.</summary>
+        private RectTransform CreateFramedFlight(RectTransform root, out Vector2 photoOffset, out Vector2 photoSize)
+        {
+            var target = (RectTransform)_polaroid.transform;
+            var flight = (RectTransform)Instantiate(_polaroid, root, false).transform;
+            flight.name = "PhotoFrameFlight";
+            var center = (Vector2)root.InverseTransformPoint(target.TransformPoint(target.rect.center));
+            var size = new Vector2(
+                root.InverseTransformVector(target.TransformVector(Vector3.right * target.rect.width)).magnitude,
+                root.InverseTransformVector(target.TransformVector(Vector3.up * target.rect.height)).magnitude);
+            AnomalyUi.Place(flight, new Rect(center - size * 0.5f, size));
+            flight.localRotation = Quaternion.Inverse(root.rotation) * target.rotation;
+            flight.gameObject.SetActive(true);
+            foreach (var graphic in flight.GetComponentsInChildren<Graphic>(true))
+                graphic.raycastTarget = false;
+            flight.GetComponentInChildren<AspectRatioFitter>(true).GetComponent<Image>().enabled = true;
+            Canvas.ForceUpdateCanvases();
+            var photo = flight.GetComponentInChildren<AspectRatioFitter>(true).GetComponent<RectTransform>();
+            photoOffset = flight.InverseTransformPoint(photo.TransformPoint(photo.rect.center));
+            photoSize = new Vector2(
+                flight.InverseTransformVector(photo.TransformVector(Vector3.right * photo.rect.width)).magnitude,
+                flight.InverseTransformVector(photo.TransformVector(Vector3.up * photo.rect.height)).magnitude);
+            return flight;
+        }
+
+        /// <summary>A tap on the HUD photo requests the comparison view once the search is running; otherwise only the fitted board's own raycast counts, excluding UI, letterboxing and presentation-locked taps.</summary>
         public void OnPointerClick(PointerEventData eventData)
         {
+            var hit = eventData.pointerCurrentRaycast.gameObject;
+            if (hit != null && hit.transform.IsChildOf(_polaroid.transform))
+            {
+                if (_search.IsStarted && !_isPhotographing && !_search.IsPaused && !Boosters.IsPhotoOpen)
+                    PhotoRequested?.Invoke();
+                return;
+            }
             if (eventData.pointerCurrentRaycast.gameObject != _board.gameObject || !_search.IsStarted ||
                 _search.IsPaused || Boosters.IsPhotoOpen || _search.IsCompleted || _search.IsTransitionPending || _isTransitioning || _isPhotographing)
                 return;
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(_picture, eventData.position, eventData.pressEventCamera, out var local))
+                return;
+            if (_missLimiter.IsLocked(Time.unscaledTime))
                 return;
             var rect = _picture.rect;
             if (!rect.Contains(local) || rect.width <= 0 || rect.height <= 0)
@@ -225,6 +234,40 @@ namespace Game.Anomalies
                 if (anomaly.Bounds.Contains(point))
                     return;
             _effects.Miss(_picture, local);
+            if (_missLimiter.RegisterMiss(Time.unscaledTime))
+                ShowLock();
+        }
+
+        /// <summary>Dims the picture and shows the warning; both are passive children of the effects root.</summary>
+        private void ShowLock()
+        {
+            HideLock();
+            var root = (RectTransform)_effects.transform;
+            var dim = AnomalyUi.Image("MissLock", root);
+            dim.color = new Color(0, 0, 0, _data.Presentation.MissLockDim);
+            AnomalyUi.Place(dim.rectTransform, AnomalyUi.LocalRect(_picture, root));
+            var text = AnomalyUi.Text("Warning", dim.transform, new Vector2(0.05f, 0.4f), new Vector2(0.95f, 0.6f));
+            UiKit.Style(UiThemeData.LoadOrDefault(), text, UiKit.TextStyleAlias.Light);
+            text.text = _data.Presentation.MissLockWarning;
+            _lockOverlay = dim.gameObject;
+        }
+
+        /// <summary>Removes the dimming and warning.</summary>
+        private void HideLock()
+        {
+            if (_lockOverlay != null)
+                Destroy(_lockOverlay);
+            _lockOverlay = null;
+        }
+
+        /// <summary>Ends the lock by real time, with a clean counter.</summary>
+        private void Update()
+        {
+            if (_lockOverlay != null && !_missLimiter.IsLocked(Time.unscaledTime))
+            {
+                _missLimiter.Reset();
+                HideLock();
+            }
         }
 
         /// <summary>Reflects model state; visual replacement is separately staged under full blackout.</summary>
@@ -232,7 +275,7 @@ namespace Game.Anomalies
         {
             _readyButton.gameObject.SetActive(!_search.IsStarted && !_isPhotographing);
             _originalTape.SetActive(!_search.IsStarted && !_isPhotographing);
-            if (_displayedStage != _search.StageIndex && !_isTransitioning)
+            if (_displayedStage != _search.StageIndex && !_isTransitioning && !_isPhotographing)
                 BuildStage(_search.StageIndex, _search.CurrentAnomalies);
             if (_search.Stages.Count > 0)
                 _status.text = $"STAGE {Mathf.Clamp(_search.StageIndex + 1, 1, _search.Stages.Count)}/{_search.Stages.Count}";
@@ -287,7 +330,7 @@ namespace Game.Anomalies
             RefreshTask();
         }
 
-        /// <summary>Creates exactly one closed slot per actual stage anomaly; called only initially or under opaque black.</summary>
+        /// <summary>Creates exactly one closed slot per actual stage anomaly from the prefab templates; called only initially or under opaque black.</summary>
         private void BuildStage(int index, IReadOnlyList<AnomalyData> anomalies)
         {
             _displayedStage = index;
@@ -307,19 +350,18 @@ namespace Game.Anomalies
             const float slotWidth = 115f;
             const float slotGap = 25f;
             var rowWidth = anomalies.Count * slotWidth + Mathf.Max(0, anomalies.Count - 1) * slotGap;
-            var rootWidth = _slotsRoot.rect.width > 0 ? _slotsRoot.rect.width : 880f;
             for (var i = 0; i < anomalies.Count; i++)
             {
                 var anomaly = anomalies[i];
-                var image = AnomalyUi.Image(anomaly.Id, _stageRoot, anomaly.Image);
+                var image = Instantiate(_stageImageTemplate, _stageRoot, false);
+                image.name = anomaly.Id;
+                image.sprite = anomaly.Image;
                 AnomalyUi.Bounds(image.rectTransform, anomaly.Bounds.min, anomaly.Bounds.max);
                 _imagesById.Add(anomaly.Id, image);
-                var slot = UiKit.Image("Closed_" + anomaly.Id, _slotsRoot, _theme.SlotEmpty);
-                slot.color = _theme.ClosedSlotColor;
+                var slot = Instantiate(_slotTemplate, _slotsRoot, false);
+                slot.name = "Closed_" + anomaly.Id;
                 var left = (880f - rowWidth) * 0.5f + i * (slotWidth + slotGap);
                 UiKit.PlaceIn(slot.rectTransform, 880f, 115f, left, 0, left + slotWidth, 115f);
-                var cover = UiKit.FillLabel(_theme, slot.transform, "?", UiKit.TextStyleAlias.Dark, 80);
-                cover.name = "Cover";
                 _slotsById.Add(anomaly.Id, slot);
             }
         }
@@ -365,6 +407,8 @@ namespace Game.Anomalies
         private void OnDisable()
         {
             Boosters?.Dispose();
+            _missLimiter?.Reset();
+            HideLock();
             StopAllCoroutines();
             _narrativeRoutine = null;
             if (_search != null)

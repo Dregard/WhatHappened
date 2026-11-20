@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using Game.Anomalies;
 using Game.Camera;
+using Game.Gameplay.Chapters;
 using Game.UI.Buttons;
 using TMPro;
 using UnityEngine;
@@ -14,6 +14,7 @@ namespace Game.UI.Hud
     public class HudView : MonoBehaviour, IAdditionalCameraProvider
     {
         public Canvas HudCanvas { get { return _canvas; } }
+        public ChapterHudView ChapterHud { get { return _chapterHud; } }
         [SerializeField] private Canvas _canvas;
         [SerializeField] private RectTransform _canvasRect;
         [SerializeField] private GameButton _pauseButton;
@@ -25,6 +26,8 @@ namespace Game.UI.Hud
         [SerializeField] private TMP_Text _levelText;
         [SerializeField] private Image _blockerImage;
         [SerializeField] private float _boostersOffset;
+        [SerializeField] private ChapterHudView _chapterHud;
+        [SerializeField] private GameObject _searchGatedBoosterWidget;
 
         private Dictionary<string, TutorialButton> _tutorialButtonsById;
         private TutorialButton _currentTutorialButton;
@@ -32,7 +35,8 @@ namespace Game.UI.Hud
         private Action _pauseAction;
         private Func<float> _getTimerValue;
         private BoosterButtonsController _boosterButtonsController;
-        private HudLayoutView _layout;
+        private Func<bool> _isSearchStartedFunc;
+        private bool _isGatedWidgetAvailable;
 
 
         public AdditionalCameraData[] CameraDatas => new AdditionalCameraData[]
@@ -63,7 +67,12 @@ namespace Game.UI.Hud
                 _pauseButton.gameObject.SetActive(isTimed);
 
             _boosterButtonsController?.RefreshButtonsInteractable();
-            _layout?.Refresh();
+            if (_isGatedWidgetAvailable)
+            {
+                var isSearchStarted = _isSearchStartedFunc == null || _isSearchStartedFunc();
+                if (_searchGatedBoosterWidget.activeSelf != isSearchStarted)
+                    _searchGatedBoosterWidget.SetActive(isSearchStarted);
+            }
         }
         
         public void Setup(HudModel model)
@@ -74,10 +83,8 @@ namespace Game.UI.Hud
 
             _boosterButtonsController = new BoosterButtonsController(_boosterButtons, model, model.IsBoosterUnlockedFunc);
             _boosterButtonsController.Initialize();
-            HideLegacyLayout();
-            var theme = UiThemeData.Load();
-            if (theme != null && _layout == null)
-                _layout = HudLayoutView.Create(_canvas, theme, model);
+            _isSearchStartedFunc = model.IsSearchStartedFunc;
+            _isGatedWidgetAvailable = _searchGatedBoosterWidget != null && _searchGatedBoosterWidget.activeSelf;
 
             model.SubscribeOnLevelStarted += () =>
             {
@@ -88,17 +95,6 @@ namespace Game.UI.Hud
             model.TutorialHideRequest += HandleTutorialHideRequest;
 
             UpdateLevelText(model.CurrentLevel);
-        }
-
-        /// <summary>Hides the prefab's old counters; timer and pause return only for levels that configure a countdown.</summary>
-        private void HideLegacyLayout()
-        {
-            _boostersContainer.gameObject.SetActive(false);
-            if (_levelText != null)
-                _levelText.gameObject.SetActive(false);
-            var gradient = transform.Find("TopGradient") ?? _canvasRect.Find("TopGradient");
-            if (gradient != null)
-                gradient.gameObject.SetActive(false);
         }
 
         private void UpdateLevelText(int level)
@@ -117,8 +113,8 @@ namespace Game.UI.Hud
                 var canvas = _currentTutorialButton.gameObject.AddComponent<Canvas>();
                 _currentTutorialButton.gameObject.AddComponent<GraphicRaycaster>();
                 canvas.overrideSorting = true;
-                canvas.sortingLayerName = "HUD";
-                canvas.sortingOrder = 100;
+                canvas.sortingLayerID = _canvas.sortingLayerID;
+                canvas.sortingOrder = _canvas.sortingOrder + 100;
                 _blockerImage.DOFade(.7f, .2f);
                 _blockerImage.raycastTarget = true;
             }

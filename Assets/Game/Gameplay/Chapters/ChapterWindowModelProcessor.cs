@@ -2,18 +2,18 @@ using Game.UI.Windows.General;
 
 namespace Game.Gameplay.Chapters
 {
-    public sealed class ChapterWindowModelProcessor : WindowModelProcessorBase<ChapterWindowModel, ChapterWindowModelParams>
+    /// <summary>Passes a supplied passive snapshot to its chapter window; one processor type serves each chapter window model.</summary>
+    public sealed class ChapterWindowModelProcessor<TModel> : WindowModelProcessorBase<TModel, ChapterWindowModelParams<TModel>>
+        where TModel : class, IWindowModel
     {
-        private ChapterWindowModel _model;
+        private TModel _model;
 
-        /// <summary>Receives the chapter owner's snapshot; window creation never grants rewards or changes progression.</summary>
-        public override void SetParams(ChapterWindowModelParams modelParams)
+        public override void SetParams(ChapterWindowModelParams<TModel> modelParams)
         {
             _model = modelParams.Model;
         }
 
-        /// <summary>Returns the supplied passive snapshot for investigation or chapter victory.</summary>
-        public override ChapterWindowModel GetModel()
+        public override TModel GetModel()
         {
             var model = _model;
             _model = null;

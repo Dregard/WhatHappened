@@ -42,20 +42,23 @@ namespace Game.Anomalies
             var tuning = _data.Presentation;
             var markerObject = new GameObject("Marker", typeof(RectTransform), typeof(CanvasRenderer));
             markerObject.layer = image.gameObject.layer;
-            markerObject.transform.SetParent(image.transform, false);
+            markerObject.transform.SetParent(_root, false);
+            var imageRect = AnomalyUi.LocalRect(image.rectTransform, _root);
             var marker = markerObject.AddComponent<AnomalyMarkerGraphic>();
-            AnomalyUi.Bounds(marker.rectTransform, Vector2.zero, Vector2.one);
+            AnomalyUi.Place(marker.rectTransform, imageRect);
             marker.raycastTarget = false;
             marker.color = tuning.MarkerColor;
             marker.Width = tuning.MarkerWidth;
-            var yep = AnomalyUi.Text("Yep", image.transform, new Vector2(-0.5f, 1f), new Vector2(1.5f, 1.6f));
+            var yep = AnomalyUi.Text("Yep", _root, Vector2.zero, Vector2.one);
+            AnomalyUi.Place(yep.rectTransform, new Rect(imageRect.xMin - imageRect.width * 0.5f, imageRect.yMax,
+                imageRect.width * 2f, imageRect.height * 0.6f));
             UiKit.Style(UiThemeData.LoadOrDefault(), yep, UiKit.TextStyleAlias.Light);
             yep.text = "Yep!";
             yep.color = tuning.MarkerColor;
             var starsArray = new Image[Mathf.Clamp(tuning.StarCount, 0, 24)];
             var starSprite = UiThemeData.LoadOrDefault().Particle;
             for (var i = 0; i < starsArray.Length; i++)
-                starsArray[i] = AnomalyUi.Image("FindingStar", image.transform, starSprite);
+                starsArray[i] = AnomalyUi.Image("FindingStar", _root, starSprite);
             var outline = Mathf.Max(0, _data.FindingDuration);
             var fade = Mathf.Max(0, tuning.FadeDuration);
             var flightTime = Mathf.Max(0, tuning.FlightDuration);
@@ -72,7 +75,7 @@ namespace Game.Anomalies
                     var starProgress = Fraction(elapsed, starsTime);
                     var angle = Mathf.PI * 2 * i / starsArray.Length;
                     var offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * tuning.StarDistance * starProgress;
-                    AnomalyUi.Place(starsArray[i].rectTransform, new Rect(offset - Vector2.one * tuning.StarSize * 0.5f,
+                    AnomalyUi.Place(starsArray[i].rectTransform, new Rect(imageRect.center + offset - Vector2.one * tuning.StarSize * 0.5f,
                         Vector2.one * tuning.StarSize));
                     starsArray[i].color = Color.Lerp(tuning.StarColor, Color.clear, starProgress);
                 }
@@ -123,7 +126,8 @@ namespace Game.Anomalies
         private IEnumerator MissRoutine(RectTransform board, Vector2 local)
         {
             var tuning = _data.Presentation;
-            var cross = AnomalyUi.Text("Miss", board, Vector2.zero, Vector2.one);
+            var cross = AnomalyUi.Text("Miss", _root, Vector2.zero, Vector2.one);
+            local = _root.InverseTransformPoint(board.TransformPoint(local));
             UiKit.Style(UiThemeData.LoadOrDefault(), cross, UiKit.TextStyleAlias.Light);
             cross.text = "×";
             AnomalyUi.Place(cross.rectTransform, new Rect(local - Vector2.one * tuning.MissSize * 0.5f,
