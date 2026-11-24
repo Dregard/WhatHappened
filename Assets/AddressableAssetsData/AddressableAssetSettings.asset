@@ -99,7 +99,7 @@ MonoBehaviour:
       - m_Id: 4dc75547e1d8c504d8e6b4acb74bbdc4
         m_Value: 1.0
       - m_Id: 7c92a15cb8cab2940b02fd298f8f0960
-        m_Value: 'https://sunstormstudio.com/RemoteContent/GlassMaster/[ContentBranch]/[BuildTarget]'
+        m_Value: 'https://sunstormstudio.com/RemoteContent/WhatHappened/[ContentBranch]/[BuildTarget]'
       - m_Id: e61a800c658fcb94abfd9844d33ff429
         m_Value: 'ServerData/[ContentBranch]/[BuildTarget]'
     m_ProfileEntryNames:

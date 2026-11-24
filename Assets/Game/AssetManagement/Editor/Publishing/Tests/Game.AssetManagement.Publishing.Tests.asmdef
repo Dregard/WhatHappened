@@ -1,0 +1,9 @@
+{
+    "name": "Game.AssetManagement.Publishing.Tests",
+    "references": ["Game.AssetManagement.Publishing", "Unity.Addressables", "Unity.Addressables.Editor", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+    "includePlatforms": ["Editor"],
+    "overrideReferences": true,
+    "precompiledReferences": ["nunit.framework.dll"],
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "autoReferenced": false
+}

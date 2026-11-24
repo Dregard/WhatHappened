@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 53
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b99b4ed512cb140a80809981d37c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.AssetManagement.Publishing::Game.AssetManagement.Publishing.RemoteContentPublishProjectData
+  _data:
+    _hostName: vh101.hoster.by
+    _portNumber: 22
+    _userName: h140875
+    _destinationRoot: /var/www/h140875/data/www/sunstormstudio.com/RemoteContent
+    _winScpFolder: 
+    _connectionTimeoutSeconds: 30
+    _hashCheckAttempts: 3
+    _hashCheckDelaySeconds: 3
+    _enabledProfileGuidsList:
+    - 0369f76d1df273541ae5230fd6a81eb2

@@ -1,0 +1,7 @@
+{
+    "name": "Game.AssetManagement.Publishing",
+    "rootNamespace": "Game.AssetManagement.Publishing",
+    "references": ["Unity.Addressables", "Unity.Addressables.Editor", "Unity.ResourceManager"],
+    "includePlatforms": ["Editor"],
+    "autoReferenced": false
+}
