@@ -130,6 +130,46 @@ namespace Game.Anomalies
         [Tooltip("Tint of closed slots that were not yet found.")]
         public Color ClosedSlotColor = new(1f, 1f, 1f, 1f);
 
+        [Header("Finding text and miss cross popups")]
+        [Min(0), Tooltip("Seconds for the finding text and miss cross to fade in from zero alpha and scale up to 1 with a bounce. The upward fly finishes earlier.")]
+        public float PopupAppearDuration = 0.35f;
+        [Min(0), Tooltip("Seconds of the fast upward fly from the tap point; capped at 80% of the appear duration so the fly always ends first.")]
+        public float PopupFlyDuration = 0.15f;
+        [Min(0), Tooltip("Upward travel from the tap point in local UI units; scales with the field.")]
+        public float PopupFlyDistance = 120f;
+        [Min(0), Tooltip("Scale overshoot before settling at 1: 0 is no bounce, about 1.2 is a small bounce, higher values bounce harder.")]
+        public float PopupBounce = 1.2f;
+        [Min(0), Tooltip("Seconds the popup stays fully shown after the appearance finishes, before it disappears.")]
+        public float PopupHoldDuration = 0.35f;
+        [Min(0), Tooltip("Seconds to fade alpha to zero while shrinking to the end scale.")]
+        public float PopupDisappearDuration = 0.3f;
+        [Range(0, 1), Tooltip("Scale reached when the popup has fully disappeared (1 = no shrinking).")]
+        public float PopupEndScale = 0.6f;
+        [Tooltip("Finding text box size in local UI units; the text auto-fits this box, so larger means bigger text.")]
+        public Vector2 FindingTextSize = new(420f, 160f);
+        [Min(1), Tooltip("Miss cross box size in local UI units; the cross auto-fits it, so larger means a bigger cross.")]
+        public float MissSize = 90f;
+        [Tooltip("Miss cross color; its alpha is driven by the popup animation.")]
+        public Color MissColor = Color.red;
+
+        [Header("Finding brush outline")]
+        [Range(0f, 1f), Tooltip("How uneven the brush thickness is: 0 is an even stroke of the level's MarkerWidth, 1 varies from about 0.6x to 3x of it.")]
+        public float BrushThicknessVariation = 0.4f;
+        [Range(0f, 1f), Tooltip("Waviness of the brush path and roughness of its edges: 0 is a smooth stroke, higher values look more shaky.")]
+        public float BrushRoughness = 0.3f;
+        [Min(1f), Tooltip("Brush outline size relative to the anomaly rectangle: 1 is exactly its size, 1.2 is 20% larger on every side; scales with the field.")]
+        public float BrushSizeScale = 1.2f;
+        [Tooltip("Brush width multiplier by anomaly size. X is the larger side of the anomaly bounds as a fraction of the picture (0..1), Y multiplies the level's MarkerWidth. Raise the right side to thicken the outline of large anomalies.")]
+        public AnimationCurve BrushWidthBySize = new(new Keyframe(0f, 1f), new Keyframe(0.15f, 1f), new Keyframe(0.6f, 2.5f), new Keyframe(1f, 3f));
+
+        /// <summary>Returns the brush width multiplier for an anomaly whose larger bounds side is the given picture fraction.</summary>
+        public float BrushWidthMultiplier(float sizeFraction)
+        {
+            if (BrushWidthBySize == null || BrushWidthBySize.length == 0)
+                return 1f;
+            return Mathf.Max(0.1f, BrushWidthBySize.Evaluate(Mathf.Clamp01(sizeFraction)));
+        }
+
         /// <summary>Returns the shared theme, or an empty in-memory theme when the asset is missing so presentation still builds.</summary>
         public static UiThemeData LoadOrDefault()
         {

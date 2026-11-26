@@ -52,6 +52,7 @@ namespace McpUnity.Unity
         private CancellationTokenSource _cts;
         private TestRunnerService _testRunnerService;
         private ConsoleLogsService _consoleLogsService;
+        private bool _nodeBridgeReady;
         private bool _delayedStartScheduled;
         private bool _delayedStartRequiresAutoStart;
         private int _delayedStartAttempt;
@@ -237,16 +238,63 @@ namespace McpUnity.Unity
                 return;
             }
 
-            string nodeModulesPath = Path.Combine(serverPath, "node_modules");
-            if (!Directory.Exists(nodeModulesPath))
+            _nodeBridgeReady = false;
+            try
             {
-                McpUtils.RunNpmCommand("install", serverPath);
+                using (var buildLock = ManagedBridgeBuild.Acquire(serverPath, CancellationToken.None))
+                {
+                    ManagedBridgeBuild.Ensure(serverPath, false, command => RunManagedNpm(command, serverPath), CancellationToken.None);
+                }
+                _nodeBridgeReady = true;
             }
-
-            string buildPath = Path.Combine(serverPath, "build");
-            if (!Directory.Exists(buildPath))
+            catch (Exception ex)
             {
-                McpUtils.RunNpmCommand("run build", serverPath);
+                McpLogger.LogError("MCP Node bridge preparation failed: " + ex.Message);
+            }
+        }
+
+        private static bool RunManagedNpm(string command, string serverPath)
+        {
+            var npm = McpUnitySettings.Instance.NpmExecutablePath;
+            var start = new System.Diagnostics.ProcessStartInfo
+            {
+                WorkingDirectory = serverPath,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
+            if (Application.platform == RuntimePlatform.WindowsEditor)
+            {
+                if (!string.IsNullOrWhiteSpace(npm) && npm.EndsWith(".cmd", StringComparison.OrdinalIgnoreCase))
+                {
+                    var folder = Path.GetDirectoryName(Path.GetFullPath(npm));
+                    start.FileName = Path.Combine(folder, "node.exe");
+                    start.Arguments = "\"" + Path.Combine(folder, "node_modules", "npm", "bin", "npm-cli.js") + "\" " + command;
+                    start.EnvironmentVariables["PATH"] = folder + Path.PathSeparator + Environment.GetEnvironmentVariable("PATH");
+                }
+                else if (string.IsNullOrWhiteSpace(npm))
+                {
+                    start.FileName = "cmd.exe";
+                    start.Arguments = "/d /c npm " + command;
+                }
+                else { start.FileName = npm; start.Arguments = command; }
+            }
+            else { start.FileName = string.IsNullOrWhiteSpace(npm) ? "npm" : npm; start.Arguments = command; }
+
+            using (var process = System.Diagnostics.Process.Start(start))
+            {
+                if (process == null) return false;
+                var output = process.StandardOutput.ReadToEndAsync();
+                var error = process.StandardError.ReadToEndAsync();
+                process.WaitForExit();
+                System.Threading.Tasks.Task.WaitAll(output, error);
+                if (command != ManagedBridgeBuild.CheckArguments)
+                {
+                    if (process.ExitCode == 0) McpLogger.LogInfo("npm " + command + " completed. " + output.Result);
+                    else McpLogger.LogError("npm " + command + " failed: " + error.Result);
+                }
+                return process.ExitCode == 0;
             }
         }
 
@@ -706,6 +754,12 @@ namespace McpUnity.Unity
             if (IsListening)
             {
                 return;
+            }
+
+            if (!Application.isBatchMode && !_nodeBridgeReady)
+            {
+                InstallServer();
+                if (!_nodeBridgeReady) return;
             }
 
             bool isFinalAttempt = attempt >= DelayedStartMaxAttempts;

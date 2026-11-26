@@ -18,15 +18,13 @@ namespace Game.Anomalies
         public float FlightDuration = 0.6f;
         [Min(0), Tooltip("Seconds for star particles to spread and fade. Stage completion waits for them.")]
         public float StarsDuration = 0.5f;
-        [Min(0), Tooltip("Seconds for a miss cross to fade beneath the pointer.")]
-        public float MissDuration = 0.4f;
         [Range(0, 8), Tooltip("Number of dim light pulses before full blackout. Stage replacement happens only at full black.")]
         public int FlickerCount = 2;
         [Min(0), Tooltip("Seconds to hold full black around the stage replacement.")]
         public float BlackoutDuration = 0.12f;
         [Tooltip("Color of the progressively drawn finding marker.")]
         public Color MarkerColor = new(0.3f, 1f, 0.5f, 1f);
-        [Min(1), Tooltip("Marker stroke width in local UI units; scales with the field.")]
+        [Min(1), Tooltip("Base brush width in local UI units; the stroke varies from about 0.6x to 3x of it and scales with the field.")]
         public float MarkerWidth = 5f;
         [Range(0, 24), Tooltip("Number of stars emitted for each accepted finding.")]
         public int StarCount = 7;
@@ -36,10 +34,6 @@ namespace Game.Anomalies
         public float StarSize = 28f;
         [Tooltip("Color of finding stars.")]
         public Color StarColor = new(1f, 0.8f, 0.2f, 1f);
-        [Min(1), Tooltip("Miss cross diameter in local UI units.")]
-        public float MissSize = 45f;
-        [Tooltip("Miss cross color; alpha fades to zero.")]
-        public Color MissColor = Color.red;
         [Min(1), Tooltip("Picture misses within the sliding window that start the tap lock.")]
         public int MissLockCount = 3;
         [Min(0.1f), Tooltip("Sliding window in real seconds in which the misses are counted.")]

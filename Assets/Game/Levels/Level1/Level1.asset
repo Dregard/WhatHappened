@@ -59,7 +59,6 @@ MonoBehaviour:
       FadeDuration: 0.3
       FlightDuration: 0.6
       StarsDuration: 0.5
-      MissDuration: 0.4
       FlickerCount: 2
       BlackoutDuration: 0.12
       MarkerColor: {r: 0.3, g: 1, b: 0.5, a: 1}
@@ -68,8 +67,6 @@ MonoBehaviour:
       StarDistance: 100
       StarSize: 28
       StarColor: {r: 1, g: 0.8, b: 0.2, a: 1}
-      MissSize: 45
-      MissColor: {r: 1, g: 0, b: 0, a: 1}
       ClosedColor: {r: 0.08, g: 0.1, b: 0.16, a: 1}
       NarrativeDuration: 3
       FindingSfx: GlassSnap

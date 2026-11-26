@@ -61,6 +61,62 @@ MonoBehaviour:
   GoldOutlineColor: {r: 0.35, g: 0.17, b: 0.02, a: 1}
   OutlineWidth: 0.28
   BoldText: 1
+  BoldCharacterSpacing: -7
   VeilColor: {r: 0.06, g: 0.03, b: 0.14, a: 0.82}
   PhotoVeilColor: {r: 0.05, g: 0.03, b: 0.12, a: 0.96}
   ClosedSlotColor: {r: 1, g: 1, b: 1, a: 1}
+  PopupAppearDuration: 0.4
+  PopupFlyDuration: 0.2
+  PopupFlyDistance: 120
+  PopupBounce: 1.2
+  PopupHoldDuration: 0.35
+  PopupDisappearDuration: 0.2
+  PopupEndScale: 0.6
+  FindingTextSize: {x: 546, y: 208}
+  MissSize: 90
+  MissColor: {r: 1, g: 0, b: 0, a: 1}
+  BrushThicknessVariation: 0.202
+  BrushRoughness: 0.097
+  BrushSizeScale: 1.3
+  BrushWidthBySize:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2500061
+      value: 1.751831
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6
+      value: 2.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

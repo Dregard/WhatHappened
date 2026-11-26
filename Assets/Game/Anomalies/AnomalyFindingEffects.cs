@@ -37,7 +37,7 @@ namespace Game.Anomalies
         }
 
         /// <summary>Draws first, then fades and flies independently; acknowledgement waits for every effect and HUD arrival.</summary>
-        public IEnumerator Finding(AnomalyData anomaly, Image image, Image slot, Action completed)
+        public IEnumerator Finding(AnomalyData anomaly, Image image, Image slot, Vector2? tap, Action completed)
         {
             var tuning = _data.Presentation;
             var markerObject = new GameObject("Marker", typeof(RectTransform), typeof(CanvasRenderer));
@@ -48,13 +48,17 @@ namespace Game.Anomalies
             AnomalyUi.Place(marker.rectTransform, imageRect);
             marker.raycastTarget = false;
             marker.color = tuning.MarkerColor;
-            marker.Width = tuning.MarkerWidth;
+            var theme = UiThemeData.LoadOrDefault();
+            marker.Width = tuning.MarkerWidth *
+                theme.BrushWidthMultiplier(Mathf.Max(anomaly.Bounds.width, anomaly.Bounds.height));
+            marker.ThicknessVariation = theme.BrushThicknessVariation;
+            marker.SizeScale = theme.BrushSizeScale;
+            marker.Roughness = theme.BrushRoughness;
             var yep = AnomalyUi.Text("Yep", _root, Vector2.zero, Vector2.one);
-            AnomalyUi.Place(yep.rectTransform, new Rect(imageRect.xMin - imageRect.width * 0.5f, imageRect.yMax,
-                imageRect.width * 2f, imageRect.height * 0.6f));
             UiKit.Style(UiThemeData.LoadOrDefault(), yep, UiKit.TextStyleAlias.Light);
             yep.text = "Yep!";
             yep.color = tuning.MarkerColor;
+            StartCoroutine(Popup(yep, tap ?? imageRect.center, theme.FindingTextSize));
             var starsArray = new Image[Mathf.Clamp(tuning.StarCount, 0, 24)];
             var starSprite = UiThemeData.LoadOrDefault().Particle;
             for (var i = 0; i < starsArray.Length; i++)
@@ -86,7 +90,6 @@ namespace Game.Anomalies
                 var afterOutline = elapsed - outline;
                 image.color = new Color(1, 1, 1, 1 - Fraction(afterOutline, fade));
                 marker.canvasRenderer.SetAlpha(1 - Fraction(afterOutline, fade));
-                yep.alpha = 1 - Fraction(afterOutline, fade);
                 var fraction = Mathf.SmoothStep(0, 1, Fraction(afterOutline, flightTime));
                 var source = FitRect(AnomalyUi.LocalRect(image.rectTransform, _root), anomaly.Image);
                 var target = FitRect(AnomalyUi.LocalRect(slot.rectTransform, _root), anomaly.Image);
@@ -116,24 +119,60 @@ namespace Game.Anomalies
             return new Rect(area.center - size * 0.5f, size);
         }
 
+        /// <summary>Converts a point local to the board into this effects root's local space.</summary>
+        public Vector2 ToRootLocal(RectTransform board, Vector2 local)
+        {
+            return _root.InverseTransformPoint(board.TransformPoint(local));
+        }
+
         /// <summary>Shows a nonblocking miss at the exact pointer position within the board.</summary>
         public void Miss(RectTransform board, Vector2 local)
         {
             StartCoroutine(MissRoutine(board, local));
         }
 
-        /// <summary>Fades a cross with the same pause and lifetime semantics as finding effects.</summary>
+        /// <summary>Shared popup: fades and bounces in while flying up from the tap, holds, then fades out shrinking; destroys the text.</summary>
+        private IEnumerator Popup(TMP_Text text, Vector2 start, Vector2 size)
+        {
+            var tuning = UiThemeData.LoadOrDefault();
+            var appear = Mathf.Max(0, tuning.PopupAppearDuration);
+            var fly = Mathf.Min(Mathf.Max(0, tuning.PopupFlyDuration), appear * 0.8f);
+            var rect = text.rectTransform;
+            AnomalyUi.Place(rect, new Rect(start - size * 0.5f, size));
+            text.alpha = 0;
+            rect.localScale = Vector3.zero;
+            yield return Animate(appear, progress =>
+            {
+                var flyFraction = 1 - Mathf.Pow(1 - Fraction(progress * appear, fly), 3);
+                rect.localPosition = start + Vector2.up * tuning.PopupFlyDistance * flyFraction;
+                text.alpha = progress;
+                rect.localScale = Vector3.one * EaseOutBack(progress, tuning.PopupBounce);
+            });
+            yield return Animate(tuning.PopupHoldDuration, _ => { });
+            yield return Animate(tuning.PopupDisappearDuration, progress =>
+            {
+                text.alpha = 1 - progress;
+                rect.localScale = Vector3.one * Mathf.Lerp(1, tuning.PopupEndScale, progress);
+            });
+            Destroy(text.gameObject);
+        }
+
+        /// <summary>Ease reaching 1 with a small overshoot; overshoot 0 is a plain cubic ease-out.</summary>
+        private static float EaseOutBack(float t, float overshoot)
+        {
+            var c = overshoot + 1;
+            return 1 + c * Mathf.Pow(t - 1, 3) + overshoot * Mathf.Pow(t - 1, 2);
+        }
+
+        /// <summary>Runs the shared popup animation for the cross.</summary>
         private IEnumerator MissRoutine(RectTransform board, Vector2 local)
         {
-            var tuning = _data.Presentation;
+            var theme = UiThemeData.LoadOrDefault();
             var cross = AnomalyUi.Text("Miss", _root, Vector2.zero, Vector2.one);
-            local = _root.InverseTransformPoint(board.TransformPoint(local));
-            UiKit.Style(UiThemeData.LoadOrDefault(), cross, UiKit.TextStyleAlias.Light);
+            UiKit.Style(theme, cross, UiKit.TextStyleAlias.Light);
             cross.text = "×";
-            AnomalyUi.Place(cross.rectTransform, new Rect(local - Vector2.one * tuning.MissSize * 0.5f,
-                Vector2.one * tuning.MissSize));
-            yield return Animate(tuning.MissDuration, progress => cross.color = Color.Lerp(tuning.MissColor, Color.clear, progress));
-            Destroy(cross.gameObject);
+            cross.color = theme.MissColor;
+            yield return Popup(cross, ToRootLocal(board, local), Vector2.one * theme.MissSize);
         }
 
         /// <summary>Clamps phase progress, including immediate zero-duration phases.</summary>

@@ -53,6 +53,7 @@ namespace Game.Anomalies
         private bool _isPhotographing;
         private bool _isTransitioning;
         private AnomalyMissLimiter _missLimiter;
+        private Vector2? _tapRoot;
         private GameObject _lockOverlay;
 
         /// <summary>Instantiates the prefab on the HUD canvas: HUD elements share its level, the board sits just beneath it.</summary>
@@ -228,7 +229,10 @@ namespace Game.Anomalies
             if (!rect.Contains(local) || rect.width <= 0 || rect.height <= 0)
                 return;
             var point = (local - rect.min) / rect.size;
-            if (_search.TryFind(point))
+            _tapRoot = _effects.ToRootLocal(_picture, local);
+            var found = _search.TryFind(point);
+            _tapRoot = null;
+            if (found)
                 return;
             foreach (var anomaly in _search.CurrentAnomalies)
                 if (anomaly.Bounds.Contains(point))
@@ -371,7 +375,7 @@ namespace Game.Anomalies
         {
             ShowNarrative(anomaly.HudText, true);
             RequestSfx(_data.Presentation.FindingSfx);
-            StartCoroutine(_effects.Finding(anomaly, _imagesById[anomaly.Id], _slotsById[anomaly.Id],
+            StartCoroutine(_effects.Finding(anomaly, _imagesById[anomaly.Id], _slotsById[anomaly.Id], _tapRoot,
                 () => _search.CompleteFinding(anomaly.Id)));
         }
 
